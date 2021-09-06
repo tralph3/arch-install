@@ -5,6 +5,8 @@ ROOT_DEVICE=/dev/sdX  # replace with desired disk
 PASSWD=
 HOSTNAME=
 USERNAME=
+WIN_DEVICE=/dev/sdX
+STRG_DEVICE=/dev/sdX
 
 
 function pre_setup() {
@@ -14,8 +16,13 @@ function pre_setup() {
     fdisk --wipe always $ROOT_DEVICE << FDISK_CMDS
 g
 n
+
+
 +512MB
 n
+
+
+
 w
 FDISK_CMDS
 
@@ -25,25 +32,29 @@ FDISK_CMDS
 
     # mount partitions
     mount ${ROOT_DEVICE}2 /mnt
-    mkdir -p /mnt/boot
+    mkdir -pv /mnt/boot
+    mkdir -pv /mnt/mnt/Storage
+    mkdir -pv /mnt/mnt/Windows
     mount ${ROOT_DEVICE}1 /mnt/boot
+    mount ${STRG_DEVICE} /mnt/mnt/Storage
+    mount ${WIN_DEVICE} /mnt/mnt/Windows
 
     # get mirrors
     reflector > /etc/pacman.d/mirrorlist
-    cp -f pacman.conf /etc/pacman.conf
+    cp -vf pacman.conf /etc/pacman.conf
 }
 
 function install_base() {
     pacstrap /mnt base linux linux-firmware
     genfstab -U /mnt >> /mnt/etc/fstab
-    cp -f locale.gen /mnt/etc/locale.gen
-    cp -f pacman.conf /mnt/etc/pacman.conf
+    cp -fv locale.gen /mnt/etc/locale.gen
+    cp -fv pacman.conf /mnt/etc/pacman.conf
     arch-chroot /mnt
 }
 
-function set_up_network() {
+function setup_network() {
     # time
-    ln -sf /usr/share/zoneinfo/America/Argentina/Buenos_Aires /etc/localtime
+    ln -sfv /usr/share/zoneinfo/America/Argentina/Buenos_Aires /etc/localtime
     hwclock --systohc
 
     locale-gen
@@ -73,7 +84,7 @@ function setup_users() {
 }
 
 function setup_gui() {
-    pacman -S plasma kde-applications firefox lutris steam-native nvidia nvidia-utils
+    pacman -S plasma kde-applications firefox lutris steam-native nvidia nvidia-utils discord
 }
 
 function enable_services() {
@@ -81,3 +92,18 @@ function enable_services() {
     systemctl enable sshd
     systemctl enable sddm
 }
+
+function reboot {
+    exit
+    umount -R /mnt
+    reboot
+}
+
+pre_setup
+install_base
+setup_network
+prepare_system
+setup_users
+setup_gui
+enable_services
+reboot
