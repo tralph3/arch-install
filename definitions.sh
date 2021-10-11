@@ -1,6 +1,6 @@
 #!/bin/bash
 
-function pre_setup() {
+function partition_and_mount() {
     timedatectl set-ntp true # sync clock
 
     # disk partitioning
@@ -23,12 +23,19 @@ FDISK_CMDS
 
     # mount partitions
     mount ${ROOT_DEVICE}2 /mnt
+
     mkdir -pv /mnt/boot
-    mkdir -pv /mnt/mnt/Storage
-    mkdir -pv /mnt/mnt/Windows
     mount ${ROOT_DEVICE}1 /mnt/boot
-    mount ${STRG_DEVICE} /mnt/mnt/Storage
-    mount ${WIN_DEVICE} /mnt/mnt/Windows
+
+    if [ $STRG_DEVICE ]; then
+        mkdir -pv /mnt/mnt/Storage
+        mount ${STRG_DEVICE} /mnt/mnt/Storage
+    fi
+
+    if [ $WIN_DEVICE ]; then
+        mkdir -pv /mnt/mnt/Windows
+        mount ${WIN_DEVICE} /mnt/mnt/Windows
+    fi
 
     # get mirrors
     reflector > /etc/pacman.d/mirrorlist
@@ -61,7 +68,9 @@ EOL
 
 function prepare_system() {
     # install basic utilities
-    pacman --noconfirm -Syu grub efibootmgr networkmanager network-manager-applet openssh base-devel linux-headers dialog os-prober mtools dosfstools git nano neovim vim sudo
+    pacman --noconfirm -Syu grub efibootmgr networkmanager \
+        network-manager-applet openssh base-devel linux-headers dialog \
+        os-prober mtools dosfstools git
 
     # install grub
     grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=Arch
@@ -74,7 +83,12 @@ function setup_users() {
 }
 
 function setup_gui() {
-    pacman -S plasma kde-applications firefox lutris steam-native nvidia nvidia-utils discord
+    pacman --noconfirm -S plasma kde-applications
+}
+
+function install_applications() {
+    pacman --noconfirm -S firefox lutris steam-native nvidia nvidia-utils \
+        discord android-tools unrar nano neovim vim sudo
 }
 
 function enable_services() {
@@ -84,7 +98,6 @@ function enable_services() {
 }
 
 function reboot {
-    exit
     umount -R /mnt
     reboot
 }
