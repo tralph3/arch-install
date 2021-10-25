@@ -88,7 +88,7 @@ fi
 
 install_base
 
-cp definitions.sh /mnt
+cp -vf /arch-install/definitions.sh /mnt
 
 # all the following will be ran inside the chroot
 cat << EOF | arch-chroot /mnt
