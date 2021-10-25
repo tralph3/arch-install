@@ -65,8 +65,10 @@ g
 n
 
 
+
 +512MB
 n
+
 
 
 
@@ -108,6 +110,7 @@ function partition_and_mount_bios() {
     # disk partitioning
     fdisk --wipe always $ROOT_DEVICE << FDISK_CMDS
 n
+
 
 
 
