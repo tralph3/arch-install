@@ -227,6 +227,7 @@ function install_applications() {
     pacman --noconfirm -S $APPS
     install_paru
     paru --noconfirm -S $AUR
+    configure_terminal
 }
 
 function configure_terminal() {
