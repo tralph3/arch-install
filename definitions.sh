@@ -60,7 +60,7 @@ function partition_and_mount_uefi() {
     timedatectl set-ntp true # sync clock
 
     # disk partitioning
-    fdisk --wipe always $ROOT_DEVICE << FDISK_CMDS
+    fdisk --wipe always --wipe-partitions always $ROOT_DEVICE << FDISK_CMDS
 g
 n
 
@@ -109,7 +109,7 @@ function partition_and_mount_bios() {
     timedatectl set-ntp true # sync clock
 
     # disk partitioning
-    fdisk --wipe always $ROOT_DEVICE << FDISK_CMDS
+    fdisk --wipe always --wipe-partitions always $ROOT_DEVICE << FDISK_CMDS
 n
 
 
