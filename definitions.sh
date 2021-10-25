@@ -80,6 +80,7 @@ FDISK_CMDS
     mkfs.ext4 ${ROOT_DEVICE}2      # root
 
     # mount partitions
+    mkdir -pv /mnt
     mount ${ROOT_DEVICE}2 /mnt
 
     mkdir -pv /mnt/boot
@@ -121,6 +122,7 @@ FDISK_CMDS
     mkfs.ext4 ${ROOT_DEVICE}1      # root/boot
 
     # mount partitions
+    mkdir -pv /mnt
     mount ${ROOT_DEVICE}1 /mnt
 
     if [ $STRG_DEVICE ]; then
