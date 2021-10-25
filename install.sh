@@ -14,6 +14,7 @@ export BASE=(
 'base'
 'linux'
 'linux-firmware'
+'python'
 )
 
 export BASE_APPS=(
