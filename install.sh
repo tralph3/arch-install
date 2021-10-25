@@ -1,13 +1,77 @@
 #!/bin/bash
 # arch installation script, KDE, GPT partition scheme, xorg
 
-export ROOT_DEVICE=/dev/sdX    # replace with desired disk
+export ROOT_DEVICE=/dev/sdX    # Drive were Arch will be installed
 export PASSWD=
 export HOSTNAME=
 export USERNAME=
-export WIN_DEVICE=/dev/sdX     # leave empty if none
-export STRG_DEVICE=/dev/sdX    # leave empty if none
-export UEFI=                   # y/n
+export WIN_DEVICE=/dev/sdX     # For Windows partition (leave empty if none)
+export STRG_DEVICE=/dev/sdX    # For secondary drive (leave empty if none)
+export UEFI=y                  # y/n
+export GPU=amd                 # amd/nvidia/intel
+
+export BASE=(
+'base'
+'linux'
+'linux-firmware'
+)
+
+export BASE_APPS=(
+'grub'
+'efibootmgr'
+'networkmanager'
+'network-manager-applet'
+'openssh'
+'base-devel'
+'linux-headers'
+'dialog'
+'os-prober'
+'mtools'
+'dosfstools'
+'git'
+'usbutils'
+'xdg-user-dirs'
+'xdg-desktop-portal-kde'
+'wget'
+'reflector'
+)
+
+export APPS=(
+'firefox'
+'lutris'
+'steam'
+'steam-native-runtime'
+'discord'
+'android-tools'
+'unrar'
+'unzip'
+'nano'
+'neovim'
+'vim'
+'sudo'
+'exa'
+'mlocate'
+'cronie'
+'cups'
+'bc'
+'npm'
+'mpv'
+'gimp'
+'htop'
+'gamemode'
+'wine'
+'wine-mono'
+'wine-gecko'
+'winetricks'
+'zenity'
+'zip'
+'numlockx'
+)
+
+export AUR=(
+'proton-ge-custom-bin'
+'mangohud'
+)
 
 source definitions.sh
 

@@ -74,7 +74,7 @@ w
 FDISK_CMDS
 
     # partition formatting
-    mkfs.fat -F32 ${ROOT_DEVICE}1 # boot
+    mkfs.fat -F 32 ${ROOT_DEVICE}1  # boot
     mkfs.ext4 ${ROOT_DEVICE}2      # root
 
     # mount partitions
@@ -95,11 +95,10 @@ FDISK_CMDS
 
     # get mirrors
     reflector > /etc/pacman.d/mirrorlist
-    cp -vf pacman.conf /etc/pacman.conf
 }
 
 function install_base() {
-    pacstrap /mnt base linux linux-firmware
+    pacstrap /mnt $BASE
     genfstab -U /mnt >> /mnt/etc/fstab
 }
 
@@ -133,7 +132,6 @@ FDISK_CMDS
 
     # get mirrors
     reflector > /etc/pacman.d/mirrorlist
-    cp -vf pacman.conf /etc/pacman.conf
 }
 
 function setup_network() {
@@ -150,14 +148,45 @@ function setup_network() {
 ::1         localhost
 127.0.1.1   ${HOSTNAME}.localdomain ${HOSTNAME}
 EOL
-    echo -e "${PASSWD}\n${PASSWD}" | passwd
+    echo -e "${PASSWD}\n${PASSWD}\n" | passwd
+}
+
+function install_cpu_ucode() {
+    CPU=$(lscpu | awk '/Vendor ID:/ {print $3}')
+
+    if [ "$CPU" == AuthenticAMD ]; then
+        pacman --noconfirm -S amd-ucode
+    elif [ "$CPU" == GenuineIntel ]; then
+        pacman --noconfirm -S intel-ucode
+    fi
+}
+
+function configure_grub() {
+
+# get theme
+git clone \
+  --depth 1  \
+  --filter=blob:none  \
+  --sparse \
+  https://github.com/xenlism/Grub-themes \
+;
+cd Grub-themes
+git sparse-checkout init --cone
+git sparse-checkout set xenlism-grub-arch-1080p
+
+# install theme
+mkdir -pv /boot/grub/themes
+mv xenlism-grub-arch-1080p/Xenlism-Arch /boot/grub/themes
+
+# enable OS_PROBER and set the theme
+echo -e '\nGRUB_DISABLE_OS_PROBER=false\nGRUB_THEME="/boot/grub/themes/Xenlism-Arch/theme.txt"' >> /etc/default/grub
 }
 
 function prepare_system() {
     # install basic utilities
-    pacman --noconfirm -Syu grub efibootmgr networkmanager \
-        network-manager-applet openssh base-devel linux-headers dialog \
-        os-prober mtools dosfstools git
+    pacman --noconfirm --needed -Syu $BASE_APPS
+
+    install_cpu_ucode
 
     # install grub
     if [ "$UEFI" == y ]; then
@@ -165,13 +194,18 @@ function prepare_system() {
     elif [ "$UEFI" == n ]; then
         grub-install --target=i386-pc $ROOT_DEVICE
     fi
+
+    configure_grub
     grub-mkconfig -o /boot/grub/grub.cfg
 }
 
 function setup_users() {
-    useradd -mG wheel,video,audio,optical,storage,games ${USERNAME}
-    echo -e ${PASSWD} | passwd ${USERNAME}
+    useradd -mG wheel,video,audio,optical,storage,games -s /bin/zsh ${USERNAME}
+    echo -e "${PASSWD}\n${PASSWD}\n" | passwd ${USERNAME}
+
+    # let wheel group use sudo
     replace "# %wheel ALL=(ALL) ALL\n" "%wheel ALL=(ALL) ALL\n" /etc/sudoers
+    # add insults to the mix
     replace "@includedir /etc/sudoers.d" "@includedir /etc/sudoers.d\n\nDefaults insults" /etc/sudoers
 }
 
@@ -179,15 +213,32 @@ function setup_gui() {
     pacman --noconfirm -S plasma kde-applications
 }
 
+function install_paru() {
+    cd /home/${USERNAME}/
+    git clone https://aur.archlinux.org/paru-bin.git paru
+    cd paru
+    makepkg -si
+    cd ..
+    rm -rf paru
+    cd /
+}
+
 function install_applications() {
-    pacman --noconfirm -S firefox lutris steam-native nvidia nvidia-utils \
-        discord android-tools unrar nano neovim vim sudo
+    pacman --noconfirm -S $APPS
+    install_paru
+    paru --noconfirm -S $AUR
+}
+
+function configure_terminal() {
+    pacman --noconfirm -S zsh zsh-autosuggestions zsh-syntax-highlighting
 }
 
 function enable_services() {
     systemctl enable NetworkManager
     systemctl enable sshd
     systemctl enable sddm
+    systemctl enable cups
+    systemctl enable cronie
 }
 
 function reboot {
