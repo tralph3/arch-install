@@ -32,7 +32,6 @@ cat packages.sh definitions.sh > /mnt/definitions.sh
 # all the following will be ran inside the chroot
 cat << EOF | arch-chroot /mnt
 source definitions.sh
-pacman --noconfirm -Sy python
 configure_pacman
 setup_network
 prepare_system

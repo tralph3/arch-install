@@ -1,50 +1,10 @@
 #!/bin/bash
 
-function uncomment() {
-
-    # I'm not proud of this but using sed has proven to be a nightmare
-    python - <<EOL
-next_line = $3
-found = False
-with open("$2", 'r') as file:
-    data = file.readlines()
-
-for i, line in enumerate(data):
-    if "$1" == line or found:
-        data[i] = line[1:]
-        if found:
-            break
-        if next_line:
-            found = True
-
-
-with open("$2", 'w') as file:
-    file.writelines(data)
-EOL
-}
-
-function replace() {
-
-    # I'm not proud of this but using sed has proven to be a nightmare
-    python - <<EOL
-with open("$3", 'r') as file:
-    data = file.readlines()
-
-for i, line in enumerate(data):
-    if "$1" == line:
-        data[i] = "$2"
-        break
-
-with open("$3", 'w') as file:
-    file.writelines(data)
-EOL
-}
-
 function configure_pacman() {
-    uncomment '#Color\n' /etc/pacman.conf False
-    uncomment '#VerbosePkgLists\n' /etc/pacman.conf False
-    uncomment '#[multilib]\n' /etc/pacman.conf True
-    replace '#ParallelDownloads = 5\n' 'ParallelDownloads = 10\nILoveCandy\n' /etc/pacman.conf
+    sed -i 's/^#Color/Color/' /etc/pacman.conf
+    sed -i 's/^#VerboseP/VerboseP/' /etc/pacman.conf
+    sed -i "/\[multilib\]/,/Include/"'s/^#//' /etc/pacman.conf
+    sed -i 's/^#ParallelDownloads = 5\n/ParallelDownloads = 10\nILoveCandy\n/' /etc/pacman.conf
 }
 
 function configure_locale() {
