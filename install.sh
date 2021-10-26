@@ -43,5 +43,6 @@ enable_services
 exit
 EOF
 
+rm -fv /mnt/definitions.sh
 umount -R /mnt
 reboot
