@@ -4,7 +4,7 @@ function configure_pacman() {
     sed -i 's/^#Color/Color/' /etc/pacman.conf
     sed -i 's/^#VerboseP/VerboseP/' /etc/pacman.conf
     sed -i "/\[multilib\]/,/Include/"'s/^#//' /etc/pacman.conf
-    sed -i 's/^#ParallelDownloads = 5\n/ParallelDownloads = 10\nILoveCandy\n/' /etc/pacman.conf
+    sed -i "s/^#ParallelDownloads = 5/ParallelDownloads = 10\nILoveCandy/" /etc/pacman.conf
 }
 
 function configure_locale() {
