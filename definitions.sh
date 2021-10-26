@@ -215,7 +215,7 @@ function setup_users() {
 }
 
 function setup_gui() {
-    pacman --noconfirm -S plasma kde-applications
+    pacman --noconfirm -S ${KDE[@]}
 }
 
 function install_paru() {
