@@ -247,8 +247,3 @@ function enable_services() {
     systemctl enable cronie
 }
 
-function reboot {
-    umount -R /mnt
-    reboot
-}
-

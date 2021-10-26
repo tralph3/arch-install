@@ -43,4 +43,5 @@ enable_services
 exit
 EOF
 
+umount -R /mnt
 reboot
