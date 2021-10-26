@@ -48,8 +48,7 @@ function configure_pacman() {
 }
 
 function configure_locale() {
-    uncomment '#en_US.UTF-8 UTF-8' /etc/locale.gen False
-    uncomment '#es_AR.UTF-8 UTF-8' /etc/locale.gen False
+    sed -i "/#en_US.UTF-8 UTF-8/,/es_AR.UTF-8 UTF-8/"'s/^#//' /etc/locale.gen
 
     locale-gen
 
