@@ -35,10 +35,10 @@ source definitions.sh
 configure_pacman
 setup_network
 prepare_system
+enable_services
 setup_users
 setup_de
 install_applications
-enable_services
 exit
 EOF
 

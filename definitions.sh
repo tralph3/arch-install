@@ -169,6 +169,14 @@ function prepare_system() {
     grub-mkconfig -o /boot/grub/grub.cfg
 }
 
+function enable_services() {
+    systemctl enable NetworkManager
+    systemctl enable sshd
+    systemctl enable sddm
+    systemctl enable cups
+    systemctl enable cronie
+}
+
 function setup_users() {
     useradd -mG wheel,video,audio,optical,storage,games -s /bin/zsh ${USERNAME}
     echo -e "${PASSWD}\n${PASSWD}\n" | passwd ${USERNAME}
@@ -176,7 +184,7 @@ function setup_users() {
     export USR_HOME=$(getent passwd ${USERNAME} | cut -d\: -f6)
 
     # let wheel group use sudo
-    sed -i "s/# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/" /etc/sudoers
+    sed -i "s/^# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/" /etc/sudoers
     # add insults to injury
     sed -i "s|@includedir /etc/sudoers.d|@includedir /etc/sudoers.d\n\nDefaults insults|" /etc/sudoers
 }
@@ -214,10 +222,19 @@ function install_paru() {
 function install_applications() {
     pacman --needed --noconfirm -S ${APPS[@]}
     install_paru
+
+    # let the regular user use sudo without password for these commands
+    sed -i "s/^%wheel ALL=(ALL) ALL/# %wheel ALL=(ALL) ALL/" /etc/sudoers
+    sed -i "s/^# %wheel ALL=(ALL) NOPASSWD: ALL/%wheel ALL=(ALL) NOPASSWD: ALL/" /etc/sudoers
+
     sudo -u ${USERNAME} paru --needed --noconfirm -S ${AUR[@]}
     install_dotfiles
     install_powerlevel10k
     configure_kde
+
+    # revert the changes
+    sed -i "s/^# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/" /etc/sudoers
+    sed -i "s/^%wheel ALL=(ALL) NOPASSWD: ALL/# %wheel ALL=(ALL) NOPASSWD: ALL/" /etc/sudoers
 }
 
 function install_dotfiles() {
@@ -237,13 +254,5 @@ function install_powerlevel10k() {
     git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${USR_HOME}/.config/powerlevel10k
     chown -R ${USERNAME} ${USR_HOME}
     chgrp -R ${USERNAME} ${USR_HOME}
-}
-
-function enable_services() {
-    systemctl enable NetworkManager
-    systemctl enable sshd
-    systemctl enable sddm
-    systemctl enable cups
-    systemctl enable cronie
 }
 
