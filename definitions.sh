@@ -170,23 +170,26 @@ function install_cpu_ucode() {
 
 function configure_grub() {
 
-# get theme
-git clone \
-  --depth 1  \
-  --filter=blob:none  \
-  --sparse \
-  https://github.com/xenlism/Grub-themes \
-;
-cd Grub-themes
-git sparse-checkout init --cone
-git sparse-checkout set xenlism-grub-arch-1080p
+    # get theme
+    git clone \
+      --depth 1  \
+      --filter=blob:none  \
+      --sparse \
+      https://github.com/xenlism/Grub-themes \
+    ;
+    cd Grub-themes
+    git sparse-checkout init --cone
+    git sparse-checkout set xenlism-grub-arch-1080p
 
-# install theme
-mkdir -pv /boot/grub/themes
-mv xenlism-grub-arch-1080p/Xenlism-Arch /boot/grub/themes
+    # install theme
+    mkdir -pv /boot/grub/themes
+    mv xenlism-grub-arch-1080p/Xenlism-Arch /boot/grub/themes
 
-# enable OS_PROBER and set the theme
-echo -e '\nGRUB_DISABLE_OS_PROBER=false\nGRUB_THEME="/boot/grub/themes/Xenlism-Arch/theme.txt"' >> /etc/default/grub
+    # enable OS_PROBER and set the theme
+    echo -e '\nGRUB_DISABLE_OS_PROBER=false\nGRUB_THEME="/boot/grub/themes/Xenlism-Arch/theme.txt"' >> /etc/default/grub
+
+    # clean up
+    rm -rf /Grub-themes
 }
 
 function prepare_system() {
@@ -224,7 +227,7 @@ function setup_de() {
 
 function install_paru() {
     # use build directory to intall pary as "nobody" user
-    # change the direcory group to "nobody" and make it sticky
+    # change the directory's group to "nobody" and make it sticky
     # so that all files within get the same properties
     mkdir /home/build
     cd /home/build
@@ -251,7 +254,7 @@ function install_paru() {
 function install_applications() {
     pacman --needed --noconfirm -S ${APPS[@]}
     install_paru
-    paru --needed --noconfirm -S ${AUR[@]}
+    sudo -u ${USERNAME} paru --needed --noconfirm -S ${AUR[@]}
     install_dotfiles
     install_powerlevel10k
     configure_kde
@@ -262,7 +265,7 @@ function install_dotfiles() {
     chmod +x ${USR_HOME}/.dotfiles/install.sh
     chown -R ${USERNAME} ${USR_HOME}
     chgrp -R ${USERNAME} ${USR_HOME}
-    sudo -u ${USR_HOME}/.dotfiles/install.sh
+    sudo -u ${USERNAME} ${USR_HOME}/.dotfiles/install.sh
 }
 
 function configure_kde() {
