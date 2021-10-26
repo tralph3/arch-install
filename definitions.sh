@@ -101,7 +101,7 @@ FDISK_CMDS
 }
 
 function install_base() {
-    pacstrap /mnt $BASE
+    pacstrap /mnt ${BASE[@]}
     genfstab -U /mnt >> /mnt/etc/fstab
 }
 
@@ -189,7 +189,7 @@ echo -e '\nGRUB_DISABLE_OS_PROBER=false\nGRUB_THEME="/boot/grub/themes/Xenlism-A
 
 function prepare_system() {
     # install basic utilities
-    pacman --noconfirm --needed -Syu $BASE_APPS
+    pacman --noconfirm --needed -Syu ${BASE_APPS[@]}
 
     install_cpu_ucode
 
@@ -209,9 +209,9 @@ function setup_users() {
     echo -e "${PASSWD}\n${PASSWD}\n" | passwd ${USERNAME}
 
     # let wheel group use sudo
-    replace "# %wheel ALL=(ALL) ALL\n" "%wheel ALL=(ALL) ALL\n" /etc/sudoers
-    # add insults to the mix
-    replace "@includedir /etc/sudoers.d" "@includedir /etc/sudoers.d\n\nDefaults insults" /etc/sudoers
+    sed -i "s/# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/" /etc/sudoers
+    # add insults to injury
+    sed -i "s|@includedir /etc/sudoers.d|@includedir /etc/sudoers.d\n\nDefaults insults|" /etc/sudoers
 }
 
 function setup_gui() {
@@ -229,9 +229,9 @@ function install_paru() {
 }
 
 function install_applications() {
-    pacman --noconfirm -S $APPS
+    pacman --noconfirm -S ${APPS[@]}
     install_paru
-    paru --noconfirm -S $AUR
+    paru --noconfirm -S ${AUR[@]}
     configure_terminal
 }
 

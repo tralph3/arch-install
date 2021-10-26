@@ -1,12 +1,12 @@
 #!/bin/bash
 
-export BASE=(
+BASE=(
 'base'
 'linux'
 'linux-firmware'
 )
 
-export BASE_APPS=(
+BASE_APPS=(
 'grub'
 'efibootmgr'
 'networkmanager'
@@ -26,7 +26,7 @@ export BASE_APPS=(
 'reflector'
 )
 
-export APPS=(
+APPS=(
 'firefox'
 'lutris'
 'steam'
@@ -58,7 +58,7 @@ export APPS=(
 'numlockx'
 )
 
-export AUR=(
+AUR=(
 'proton-ge-custom-bin'
 'mangohud'
 )
