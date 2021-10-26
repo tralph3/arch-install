@@ -60,6 +60,7 @@ function partition_and_mount_uefi() {
     timedatectl set-ntp true # sync clock
 
     # disk partitioning
+    wipefs --all --force $ROOT_DEVICE
     fdisk --wipe always --wipe-partitions always $ROOT_DEVICE << FDISK_CMDS
 g
 n
@@ -109,6 +110,7 @@ function partition_and_mount_bios() {
     timedatectl set-ntp true # sync clock
 
     # disk partitioning
+    wipefs --all --force $ROOT_DEVICE
     fdisk --wipe always --wipe-partitions always $ROOT_DEVICE << FDISK_CMDS
 n
 
@@ -160,9 +162,9 @@ function install_cpu_ucode() {
     CPU=$(lscpu | awk '/Vendor ID:/ {print $3}')
 
     if [ "$CPU" == AuthenticAMD ]; then
-        pacman --noconfirm -S amd-ucode
+        pacman --needed --noconfirm -S amd-ucode
     elif [ "$CPU" == GenuineIntel ]; then
-        pacman --noconfirm -S intel-ucode
+        pacman --needed --noconfirm -S intel-ucode
     fi
 }
 
@@ -208,35 +210,70 @@ function setup_users() {
     useradd -mG wheel,video,audio,optical,storage,games -s /bin/zsh ${USERNAME}
     echo -e "${PASSWD}\n${PASSWD}\n" | passwd ${USERNAME}
 
+    export USR_HOME=$(getent passwd ${USERNAME} | cut -d\: -f6)
+
     # let wheel group use sudo
     sed -i "s/# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/" /etc/sudoers
     # add insults to injury
     sed -i "s|@includedir /etc/sudoers.d|@includedir /etc/sudoers.d\n\nDefaults insults|" /etc/sudoers
 }
 
-function setup_gui() {
-    pacman --noconfirm -S ${KDE[@]}
+function setup_de() {
+    pacman --needed --noconfirm -S ${KDE[@]}
 }
 
 function install_paru() {
-    cd /home/${USERNAME}/
+    # use build directory to intall pary as "nobody" user
+    # change the direcory group to "nobody" and make it sticky
+    # so that all files within get the same properties
+    mkdir /home/build
+    cd /home/build
+    chgrp nobody /home/build
+    chmod g+ws /home/build
+    setfacl -m u::rwx,g::rwx /home/build
+    setfacl -d --set u::rwx,g::rwx,o::- /home/build
+
+    # clone the repo
     git clone https://aur.archlinux.org/paru-bin.git paru
     cd paru
-    makepkg -si
-    cd ..
-    rm -rf paru
-    cd /
+
+    # make the package as "nobody"
+    sudo -u nobody makepkg
+
+    # install the package as root
+    pacman --noconfirm -U paru-bin*.zst
+
+    # clean up
+    cd
+    rm -rf /home/build
 }
 
 function install_applications() {
-    pacman --noconfirm -S ${APPS[@]}
+    pacman --needed --noconfirm -S ${APPS[@]}
     install_paru
-    paru --noconfirm -S ${AUR[@]}
-    configure_terminal
+    paru --needed --noconfirm -S ${AUR[@]}
+    install_dotfiles
+    install_powerlevel10k
+    configure_kde
 }
 
-function configure_terminal() {
-    pacman --noconfirm -S zsh zsh-autosuggestions zsh-syntax-highlighting
+function install_dotfiles() {
+    git clone https://github.com/tralph3/.dotfiles ${USR_HOME}/.dotfiles
+    chmod +x ${USR_HOME}/.dotfiles/install.sh
+    chown -R ${USERNAME} ${USR_HOME}
+    chgrp -R ${USERNAME} ${USR_HOME}
+    sudo -u ${USR_HOME}/.dotfiles/install.sh
+}
+
+function configure_kde() {
+    sudo -u ${USERNAME} konsave -i ${USR_HOME}/.dotfiles/tralph3.knsv
+    sudo -u ${USERNAME} konsave -a tralph3
+}
+
+function install_powerlevel10k() {
+    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${USR_HOME}/.config/powerlevel10k
+    chown -R ${USERNAME} ${USR_HOME}
+    chgrp -R ${USERNAME} ${USR_HOME}
 }
 
 function enable_services() {

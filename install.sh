@@ -37,7 +37,7 @@ configure_pacman
 setup_network
 prepare_system
 setup_users
-setup_gui
+setup_de
 install_applications
 enable_services
 exit
