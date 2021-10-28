@@ -1,12 +1,12 @@
 #!/bin/bash
-# arch installation script, KDE, GPT partition scheme, xorg
+# arch installation script, KDE, dual-boot (optional)
 
-export ROOT_DEVICE=/dev/sdX    # Drive were Arch will be installed
+export ROOT_DEVICE=/dev/sdX    # Drive were Arch will be installed (specify device, not partition)
 export PASSWD=
 export HOSTNAME=
 export USERNAME=
-export WIN_DEVICE=/dev/sdX     # For Windows partition (leave empty if none)
-export STRG_DEVICE=/dev/sdX    # For secondary drive (leave empty if none)
+export WIN_DEVICE=/dev/sdX     # For Windows partition (leave empty if none) (specify partition, not device)
+export STRG_DEVICE=/dev/sdX    # For secondary drive (leave empty if none) (specify partition, not device)
 export UEFI=y                  # y/n
 
 source definitions.sh
@@ -33,10 +33,10 @@ source definitions.sh
 configure_pacman
 setup_network
 prepare_system
-enable_services
 setup_users
 setup_de
 install_applications
+enable_services
 exit
 EOF
 
