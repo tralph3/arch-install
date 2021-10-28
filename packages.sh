@@ -33,6 +33,8 @@ BASE_APPS=(
 'zsh-syntax-highlighting'
 )
 
+GPU_DRIVERS=()
+
 KDE=(
 'ark'
 'dolphin'

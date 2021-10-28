@@ -189,8 +189,24 @@ function setup_users() {
     sed -i "s|@includedir /etc/sudoers.d|@includedir /etc/sudoers.d\n\nDefaults insults|" /etc/sudoers
 }
 
+function detect_drivers(){
+    GPU=$(lspci | grep VGA | cut -d " " -f 5-)
+
+    if [[ "${GPU}" == *"NVIDIA"* ]]; then
+        GPU_DRIVERS+=('nvidia' 'nvidia-utils' 'lib32-nvidia-utils')
+    elif [[ "${GPU}" == *"AMD"* ]]; then
+        GPU_DRIVERS+=('mesa' 'lib32-mesa' 'mesa-vdpau' 'lib32-mesa-vdpau' 'xf86-video-amdgpu' 'vulkan-radeon' 'lib32-vulkan-radeon' 'libva-mesa-driver' 'lib32-libva-mesa-driver')
+    elif [[ "${GPU}" == *"Intel"* ]]; then
+        GPU_DRIVERS+=('mesa' 'lib32-mesa' 'vulkan-intel')
+    fi
+
+    echo "${GPU_DRIVERS[@]}"
+}
+
 function setup_de() {
     pacman --needed --noconfirm -S ${KDE[@]}
+    detect_drivers
+    pacman --needed --noconfirm -S ${GPU_DRIVERS[@]}
 }
 
 function install_paru() {

@@ -8,8 +8,6 @@ export USERNAME=
 export WIN_DEVICE=/dev/sdX     # For Windows partition (leave empty if none)
 export STRG_DEVICE=/dev/sdX    # For secondary drive (leave empty if none)
 export UEFI=y                  # y/n
-export GPU=amd                 # amd/nvidia/intel
-
 
 source definitions.sh
 source packages.sh
@@ -42,6 +40,7 @@ install_applications
 exit
 EOF
 
+# clean up
 rm -fv /mnt/definitions.sh
 umount -R /mnt
 reboot
