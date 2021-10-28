@@ -8,6 +8,7 @@ BASE=(
 
 BASE_APPS=(
 'base-devel'
+'cargo'
 'cronie'
 'cups'
 'dialog'
