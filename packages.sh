@@ -108,3 +108,16 @@ AUR=(
 'steam-fonts'
 'steam-metadata-editor-git'
 )
+
+COC=(
+'coc-clangd'
+'coc-eslint'
+'coc-godot'
+'coc-godot'
+'coc-html'
+'coc-markdownlint'
+'coc-pairs'
+'coc-pyright'
+'coc-rust-analyzer'
+'coc-tsserver'
+)

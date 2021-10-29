@@ -36,7 +36,6 @@ prepare_system
 setup_users
 setup_de
 install_applications
-enable_services
 exit
 EOF
 

@@ -61,6 +61,22 @@ FDISK_CMDS
     reflector > /etc/pacman.d/mirrorlist
 }
 
+function configure_nvim() {
+    # init.vim installs plug and plugins automaitcally if it's not there
+    sudo -u ${USERNAME} nvim
+
+    sudo -u ${USERNAME} mkdir -vp ${USR_HOME}/.config/coc/extensions
+    cd ${USR_HOME}/.config/coc/extensions
+    sudo -u ${USERNAME} echo '{"dependencies":{}}'> package.json
+
+    # install extensions
+    sudo -u ${USERNAME} npm install ${COC[@]} --global-style --ignore-scripts\
+        --no-bin-links --no-package-lock --only=prod
+
+    # return to previous directory
+    cd -
+}
+
 function install_base() {
     pacstrap /mnt ${BASE[@]}
     genfstab -U /mnt >> /mnt/etc/fstab
@@ -170,11 +186,11 @@ function prepare_system() {
 }
 
 function enable_services() {
-    systemctl enable NetworkManager
-    systemctl enable sshd
-    systemctl enable sddm
-    systemctl enable cups
-    systemctl enable cronie
+    sudo -u ${USERNAME} systemctl enable NetworkManager
+    sudo -u ${USERNAME} systemctl enable sshd
+    sudo -u ${USERNAME} systemctl enable sddm
+    sudo -u ${USERNAME} systemctl enable cups
+    sudo -u ${USERNAME} systemctl enable cronie
 }
 
 function setup_users() {
@@ -247,6 +263,8 @@ function install_applications() {
     install_dotfiles
     install_powerlevel10k
     configure_kde
+    configure_nvim
+    enable_services
 
     # revert the changes
     sed -i "s/^# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/" /etc/sudoers
