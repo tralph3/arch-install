@@ -21,7 +21,7 @@ function partition_and_mount_uefi() {
 
     # disk partitioning
     wipefs --all --force $ROOT_DEVICE
-    fdisk --wipe always --wipe-partitions always $ROOT_DEVICE << FDISK_CMDS
+    cut -d " " -f 1 << EOL | fdisk --wipe always --wipe-partitions always $ROOT_DEVICE
 g           # new gpt partition scheme
 n           # new partition
             # partition number 1
@@ -32,7 +32,7 @@ n           # new parition
             # start of sector
             # end of sector
 w           # write
-FDISK_CMDS
+EOL
 
     # partition formatting
     mkfs.fat -F 32 ${ROOT_DEVICE}1     # boot
@@ -85,14 +85,14 @@ function partition_and_mount_bios() {
 
     # disk partitioning
     wipefs --all --force $ROOT_DEVICE
-    fdisk --wipe always --wipe-partitions always $ROOT_DEVICE << FDISK_CMDS
+    cut -d " " -f 1 << EOL | fdisk --wipe always --wipe-partitions always $ROOT_DEVICE
 n           # new partition
             # primary partition
             # partition number 1
             # start of sector
             # end of sector
 w           # write
-FDISK_CMDS
+EOL
 
     # partition formatting
     mkfs.ext4 ${ROOT_DEVICE}1 -L ROOT  # root/boot
