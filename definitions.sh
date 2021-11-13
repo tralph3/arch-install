@@ -135,6 +135,8 @@ partition_and_mount() {
         UEFI=n
         partition_and_mount_bios
     fi
+
+    echo "UEFI=$UEFI" >> vars.sh
 }
 
 partition_and_mount_uefi() {
