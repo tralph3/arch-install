@@ -6,7 +6,7 @@
 #############
 setup_variables() {
 
-    echo "\x1b[5;36m"
+    echo "\x1b[1;36m"
     # this is ASCII art
     base64 -d <<<"H4sIAAAAAAAAA1NQAIF4/Xh9GA1hIdgwGZioggI2eQiNUIsQ5VLAFEdWgdsGhAw2/TA+F8wpEC6y
 YmSH4jMeFaM6nlKnIzyAxem4/IU95NE9iWotuseBxgMAqF41l90BAAA=" | gunzip
@@ -65,6 +65,41 @@ YmSH4jMeFaM6nlKnIzyAxem4/IU95NE9iWotuseBxgMAqF41l90BAAA=" | gunzip
     read -s "PASSWD?Enter your password: "
     echo ""
     read "HOSTNAME?Enter this machine's hostname: "
+
+    print_summary
+}
+
+print_summary() {
+
+    echo "Summary:"
+    echo ""
+    echo ""
+    # set text to bold red
+    echo "\x1b[1;33m"
+    echo "The installer will erase all data on the \x1b[1;31m$ROOT_DEVICE\x1b[1;33m drive"
+    # reset styling settings
+    echo "\x1b[0m"
+
+    if [ $STRG_DEVICE ]; then
+        echo ""
+        echo "It will use \x1b[1;33m$STRG_DEVICE\x1b[0m as a storage medium and mount it on \x1b[1;33m/mnt/Storage\x1b[0m"
+    fi
+
+
+    if [ $WIN_DEVICE ]; then
+        echo ""
+        echo "It will treat \x1b[1;33m$WIN_DEVICE\x1b[0m as a Windows partition and it will be mounted on \x1b[1;33m/mnt/Windows\x1b[0m"
+    fi
+
+    echo ""
+
+    echo "Your username will be \x1b[1;33m$USERNAME\x1b[0m and the machine's hostname is \x1b[1;33m$HOSTNAME\x1b[0m"
+
+    read "ANS?Proceed with installation? [y/N]: "
+
+    if [ "$ANS" != "y" ]; then
+        exit
+    fi
 }
 
 configure_pacman() {
@@ -172,6 +207,7 @@ EOL
 
 install_base() {
     pacstrap /mnt ${BASE[@]}
+    reflector > /mnt/etc/pacman.d/mirrorlist
     genfstab -U /mnt >> /mnt/etc/fstab
 }
 

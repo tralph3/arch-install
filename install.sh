@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/zsh
 # tralph3's Arch installation script
 
 source definitions.sh
