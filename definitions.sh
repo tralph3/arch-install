@@ -74,7 +74,7 @@ YmSH4jMeFaM6nlKnIzyAxem4/IU95NE9iWotuseBxgMAqF41l90BAAA=" | gunzip
     select de in "KDE" "GNOME"
     do
         if [ $de ]; then
-            export DE=$de
+            echo "DE=$\"$de\"" >> vars.sh
             break
         fi
     done

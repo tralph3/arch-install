@@ -61,7 +61,6 @@ APPS=(
 'steam-native-runtime'
 'sudo'
 'unrar'
-'unrarchiver'
 'unzip'
 'vim'
 'wine'
