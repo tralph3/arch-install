@@ -73,7 +73,10 @@ YmSH4jMeFaM6nlKnIzyAxem4/IU95NE9iWotuseBxgMAqF41l90BAAA=" | gunzip
     PS3="Choose your desktop environment: "
     select de in "KDE" "GNOME"
     do
-        export DE=$de
+        if [ $de ]; then
+            export DE=$de
+            break
+        fi
     done
 
     print_summary
