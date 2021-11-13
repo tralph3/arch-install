@@ -315,10 +315,10 @@ configure_grub() {
 # USERS #
 #########
 setup_users() {
-    useradd -mG wheel,video,audio,optical,storage,games -s /bin/zsh ${USERNAME}
-    echo -e "${PASSWD}\n${PASSWD}\n" | passwd ${USERNAME}
+    useradd -mG wheel,video,audio,optical,storage,games -s /bin/zsh ${USR}
+    echo -e "${PASSWD}\n${PASSWD}\n" | passwd ${USR}
 
-    export USR_HOME=$(getent passwd ${USERNAME} | cut -d\: -f6)
+    export USR_HOME=$(getent passwd ${USR} | cut -d\: -f6)
 
     # let wheel group use sudo
     sed -i "s/^# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/" /etc/sudoers
@@ -379,7 +379,7 @@ install_applications() {
     sed -i "s/^%wheel ALL=(ALL) ALL/# %wheel ALL=(ALL) ALL/" /etc/sudoers
     sed -i "s/^# %wheel ALL=(ALL) NOPASSWD: ALL/%wheel ALL=(ALL) NOPASSWD: ALL/" /etc/sudoers
 
-    sudo -u ${USERNAME} paru --needed --noconfirm -S ${AUR[@]}
+    sudo -u ${USR} paru --needed --noconfirm -S ${AUR[@]}
     install_dotfiles
     install_powerlevel10k
     configure_nvim
@@ -418,27 +418,27 @@ install_paru() {
 install_dotfiles() {
     git clone https://github.com/tralph3/.dotfiles ${USR_HOME}/.dotfiles
     chmod +x ${USR_HOME}/.dotfiles/install.sh
-    chown -R ${USERNAME} ${USR_HOME}
-    chgrp -R ${USERNAME} ${USR_HOME}
-    sudo -u ${USERNAME} ${USR_HOME}/.dotfiles/install.sh
+    chown -R ${USR} ${USR_HOME}
+    chgrp -R ${USR} ${USR_HOME}
+    sudo -u ${USR} ${USR_HOME}/.dotfiles/install.sh
 }
 
 install_powerlevel10k() {
     git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${USR_HOME}/.config/powerlevel10k
-    chown -R ${USERNAME} ${USR_HOME}
-    chgrp -R ${USERNAME} ${USR_HOME}
+    chown -R ${USR} ${USR_HOME}
+    chgrp -R ${USR} ${USR_HOME}
 }
 
 configure_nvim() {
     # init.vim installs plug and plugins automatically if it's not there
-    sudo -u ${USERNAME} nvim
+    sudo -u ${USR} nvim
 
-    sudo -u ${USERNAME} mkdir -vp ${USR_HOME}/.config/coc/extensions
+    sudo -u ${USR} mkdir -vp ${USR_HOME}/.config/coc/extensions
     cd ${USR_HOME}/.config/coc/extensions
-    sudo -u ${USERNAME} echo '{"dependencies":{}}'> package.json
+    sudo -u ${USR} echo '{"dependencies":{}}'> package.json
 
     # install extensions
-    sudo -u ${USERNAME} npm install ${COC[@]} --global-style --ignore-scripts\
+    sudo -u ${USR} npm install ${COC[@]} --global-style --ignore-scripts\
         --no-bin-links --no-package-lock --only=prod
 
     # return to previous directory
