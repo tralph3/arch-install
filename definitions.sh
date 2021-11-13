@@ -438,6 +438,7 @@ configure_nvim() {
     sudo -u ${USR} mkdir -vp ${USR_HOME}/.config/coc/extensions
     cd ${USR_HOME}/.config/coc/extensions
     sudo -u ${USR} echo '{"dependencies":{}}'> package.json
+    chown ${USR} package.json
 
     # install extensions
     sudo -u ${USR} npm install ${COC[@]} --global-style --ignore-scripts\
