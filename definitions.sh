@@ -74,6 +74,7 @@ YmSH4jMeFaM6nlKnIzyAxem4/IU95NE9iWotuseBxgMAqF41l90BAAA=" | gunzip
     select de in "KDE" "GNOME"
     do
         if [ $de ]; then
+            DE=$de
             echo "DE=$\"$de\"" >> vars.sh
             break
         fi
@@ -107,6 +108,12 @@ print_summary() {
     echo ""
 
     echo "Your username will be \x1b[1;33m$USR\x1b[0m and the machine's hostname is \x1b[1;33m$HOSTNAME\x1b[0m"
+
+    echo ""
+
+    echo "Your Deskop Environment will be \x1b[1;33m$DE\x1b[0m"
+
+    echo ""
 
     read "ANS?Proceed with installation? [y/N]: "
 

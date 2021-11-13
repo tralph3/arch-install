@@ -132,4 +132,5 @@ KDE=(
 GNOME=(
 'gdm'
 'gnome'
+'gnome-tweaks'
 )
