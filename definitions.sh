@@ -66,9 +66,9 @@ YmSH4jMeFaM6nlKnIzyAxem4/IU95NE9iWotuseBxgMAqF41l90BAAA=" | gunzip
     echo ""
     read "HOSTNAME?Enter this machine's hostname: "
 
-    export USERNAME
-    export PASSWD
-    export HOSTNAME
+    echo "export USERNAME=$USERNAME" >> vars.sh
+    echo "export PASSWD=$PASSWD" >> vars.sh
+    echo "export HOSTNAME=$HOSTNAME" >> vars.sh
 
     PS3="Choose your desktop environment: "
     select de in "KDE" "GNOME"
@@ -297,10 +297,11 @@ configure_grub() {
     cd Grub-themes
     git sparse-checkout init --cone
     git sparse-checkout set xenlism-grub-arch-1080p
+    cd -
 
     # install theme
     mkdir -pv /boot/grub/themes
-    mv xenlism-grub-arch-1080p/Xenlism-Arch /boot/grub/themes
+    mv /Grub-themes/xenlism-grub-arch-1080p/Xenlism-Arch /boot/grub/themes
 
     # enable OS_PROBER and set the theme
     echo -e '\nGRUB_DISABLE_OS_PROBER=false\nGRUB_THEME="/boot/grub/themes/Xenlism-Arch/theme.txt"' >> /etc/default/grub

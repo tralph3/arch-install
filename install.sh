@@ -9,7 +9,7 @@ configure_pacman
 partition_and_mount
 install_base
 
-cat packages.sh definitions.sh > /mnt/definitions.sh
+cat packages.sh vars.sh definitions.sh > /mnt/definitions.sh
 
 # all the following will be ran inside the chroot
 cat << EOF | arch-chroot /mnt
