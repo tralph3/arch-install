@@ -61,12 +61,12 @@ YmSH4jMeFaM6nlKnIzyAxem4/IU95NE9iWotuseBxgMAqF41l90BAAA=" | gunzip
         fi
     done
 
-    read "USERNAME?Enter your username: "
+    read "USR?Enter your username: "
     read -s "PASSWD?Enter your password: "
     echo ""
     read "HOSTNAME?Enter this machine's hostname: "
 
-    echo "export USERNAME=$USERNAME" >> vars.sh
+    echo "export USR=$USR" >> vars.sh
     echo "export PASSWD=$PASSWD" >> vars.sh
     echo "export HOSTNAME=$HOSTNAME" >> vars.sh
 
@@ -106,7 +106,7 @@ print_summary() {
 
     echo ""
 
-    echo "Your username will be \x1b[1;33m$USERNAME\x1b[0m and the machine's hostname is \x1b[1;33m$HOSTNAME\x1b[0m"
+    echo "Your username will be \x1b[1;33m$USR\x1b[0m and the machine's hostname is \x1b[1;33m$HOSTNAME\x1b[0m"
 
     read "ANS?Proceed with installation? [y/N]: "
 
