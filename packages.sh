@@ -129,3 +129,8 @@ KDE=(
 'print-manager'
 'sddm'
 )
+
+GNOME=(
+'gdm'
+'gnome'
+)

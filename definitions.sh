@@ -26,7 +26,7 @@ YmSH4jMeFaM6nlKnIzyAxem4/IU95NE9iWotuseBxgMAqF41l90BAAA=" | gunzip
     select drive in $(lsblk | sed '/\(^├\|^└\|^NAME\)/d' | cut -d " " -f 1)
     do
         if [ $drive ]; then
-            ROOT_DEVICE="/dev/$drive"
+            export ROOT_DEVICE="/dev/$drive"
             break
         fi
     done
@@ -41,7 +41,7 @@ YmSH4jMeFaM6nlKnIzyAxem4/IU95NE9iWotuseBxgMAqF41l90BAAA=" | gunzip
         fi
 
         if [ $drive ]; then
-            WIN_DEVICE="/dev/$drive"
+            export WIN_DEVICE="/dev/$drive"
             break
         fi
     done
@@ -56,7 +56,7 @@ YmSH4jMeFaM6nlKnIzyAxem4/IU95NE9iWotuseBxgMAqF41l90BAAA=" | gunzip
         fi
 
         if [ $drive ]; then
-            STRG_DEVICE="/dev/$drive"
+            export STRG_DEVICE="/dev/$drive"
             break
         fi
     done
@@ -65,6 +65,16 @@ YmSH4jMeFaM6nlKnIzyAxem4/IU95NE9iWotuseBxgMAqF41l90BAAA=" | gunzip
     read -s "PASSWD?Enter your password: "
     echo ""
     read "HOSTNAME?Enter this machine's hostname: "
+
+    export USERNAME
+    export PASSWD
+    export HOSTNAME
+
+    PS3="Choose your desktop environment: "
+    select de in "KDE" "GNOME"
+    do
+        export DE=$de
+    done
 
     print_summary
 }
@@ -317,7 +327,22 @@ setup_users() {
 # GUI #
 #######
 setup_gui() {
-    pacman --needed --noconfirm -S ${KDE[@]}
+
+    case $DE in
+
+        KDE)
+            DE=$KDE
+            SERVICES+=('sddm')
+            break
+            ;;
+        GNOME)
+            DE=$GNOME
+            SERVICES+=('gdm')
+            break
+            ;;
+    esac
+
+    pacman --needed --noconfirm -S ${DE[@]}
     detect_drivers
     pacman --needed --noconfirm -S ${GPU_DRIVERS[@]}
 }
