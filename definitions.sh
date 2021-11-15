@@ -75,7 +75,7 @@ YmSH4jMeFaM6nlKnIzyAxem4/IU95NE9iWotuseBxgMAqF41l90BAAA=" | gunzip
     do
         if [ $de ]; then
             DE=$de
-            echo "DE=$\"$de\"" >> vars.sh
+            echo "DE=$de" >> vars.sh
             break
         fi
     done
@@ -344,7 +344,7 @@ setup_gui() {
     case $DE in
 
         KDE)
-            DE=$KDE
+            DE=${KDE[@]}
             SERVICES+=('sddm')
             break
             ;;
