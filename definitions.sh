@@ -460,7 +460,7 @@ configure_nvim() {
 # SERVICES #
 ############
 enable_services() {
-    for service in $SERVICES
+    for service in ${SERVICES[@]}
     do
         systemctl enable $service
     done
