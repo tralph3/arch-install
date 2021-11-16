@@ -346,12 +346,10 @@ setup_gui() {
         KDE)
             DE=${KDE[@]}
             SERVICES+=('sddm')
-            break
             ;;
         GNOME)
             DE=$GNOME
             SERVICES+=('gdm')
-            break
             ;;
     esac
 
