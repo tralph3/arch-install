@@ -72,6 +72,7 @@ APPS=(
 )
 
 AUR=(
+'gdu'
 'mangohud'
 'nerd-fonts-ubuntu-mono'
 'proton-ge-custom-bin'
