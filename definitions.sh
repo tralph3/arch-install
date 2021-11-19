@@ -61,9 +61,21 @@ YmSH4jMeFaM6nlKnIzyAxem4/IU95NE9iWotuseBxgMAqF41l90BAAA=" | gunzip
         fi
     done
 
+    PASSWD="null"
     read "USR?Enter your username: "
-    read -s "PASSWD?Enter your password: "
     echo ""
+    while
+        echo "\x1b[33m"
+        read -s "PASSWD?Enter your password: "
+        echo ""
+        read -s "CONF_PASSWD?Re-enter your password: "
+        echo "\x1b[31m"
+        [ "$PASSWD" != "$CONF_PASSWD" ]
+    do echo "Passwords don't match"; done
+
+    echo "\x1b[32mPasswords match\x1b[0m"
+    echo ""
+
     read "HOSTNAME?Enter this machine's hostname: "
 
     echo "export USR=$USR" >> vars.sh
