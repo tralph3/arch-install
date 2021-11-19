@@ -83,7 +83,7 @@ YmSH4jMeFaM6nlKnIzyAxem4/IU95NE9iWotuseBxgMAqF41l90BAAA=" | gunzip
     echo "export HOSTNAME=$HOSTNAME" >> vars.sh
 
     PS3="Choose your desktop environment: "
-    select de in "KDE" "GNOME"
+    select de in "KDE" "GNOME" "XFCE"
     do
         if [ $de ]; then
             DE=$de
@@ -362,6 +362,10 @@ setup_gui() {
         GNOME)
             DE=$GNOME
             SERVICES+=('gdm')
+            ;;
+        XFCE)
+            DE=$XFCE
+            SERVICES+=('lightdm')
             ;;
     esac
 

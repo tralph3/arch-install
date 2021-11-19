@@ -135,3 +135,9 @@ GNOME=(
 'gnome'
 'gnome-tweaks'
 )
+
+XFCE=(
+'xfce4'
+'xfce4-goodies'
+'lightdm'
+)
