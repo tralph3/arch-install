@@ -61,9 +61,7 @@ YmSH4jMeFaM6nlKnIzyAxem4/IU95NE9iWotuseBxgMAqF41l90BAAA=" | gunzip
         fi
     done
 
-    PASSWD="null"
     read "USR?Enter your username: "
-    echo ""
     while
         echo "\x1b[33m"
         read -s "PASSWD?Enter your password: "
@@ -78,9 +76,15 @@ YmSH4jMeFaM6nlKnIzyAxem4/IU95NE9iWotuseBxgMAqF41l90BAAA=" | gunzip
 
     read "HOSTNAME?Enter this machine's hostname: "
 
+    # detect wifi card
+    if [ "$(lspci -d ::280)" ]; then
+        WIFI=y
+    fi
+
     echo "export USR=$USR" >> vars.sh
     echo "export PASSWD=$PASSWD" >> vars.sh
     echo "export HOSTNAME=$HOSTNAME" >> vars.sh
+    echo "export WIFI=$WIFI" >> vars.sh
 
     PS3="Choose your desktop environment: "
     select de in "KDE" "GNOME" "XFCE"
@@ -281,8 +285,11 @@ configure_locale() {
 ########
 prepare_system() {
     # install basic utilities
-    pacman --noconfirm --needed -Syu ${BASE_APPS[@]}
+    if [ "$WIFI" = "y" ]; then
+        BASE_APPS+=('wpa_supplicant' 'wireless_tools')
+    fi
 
+    pacman --noconfirm --needed -Syu ${BASE_APPS[@]}
     install_cpu_ucode
 
     # install grub
