@@ -372,7 +372,7 @@ setup_gui() {
             ;;
         DEEPIN)
             DE=${DEEPIN[@]}
-            SERVICES+=('ligthdm')
+            SERVICES+=('lightdm')
             ;;
         XFCE)
             DE=${XFCE[@]}
