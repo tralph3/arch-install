@@ -87,7 +87,7 @@ YmSH4jMeFaM6nlKnIzyAxem4/IU95NE9iWotuseBxgMAqF41l90BAAA=" | gunzip
     echo "export WIFI=$WIFI" >> vars.sh
 
     PS3="Choose your desktop environment: "
-    select de in "KDE" "GNOME" "XFCE"
+    select de in "KDE" "GNOME" "DEEPIN" "XFCE"
     do
         if [ $de ]; then
             DE=$de
@@ -367,11 +367,15 @@ setup_gui() {
             SERVICES+=('sddm')
             ;;
         GNOME)
-            DE=$GNOME
+            DE=${GNOME[@]}
             SERVICES+=('gdm')
             ;;
+        DEEPIN)
+            DE=${DEEPIN[@]}
+            SERVICES+=('ligthdm')
+            ;;
         XFCE)
-            DE=$XFCE
+            DE=${XFCE[@]}
             SERVICES+=('lightdm')
             ;;
     esac

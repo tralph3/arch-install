@@ -136,6 +136,12 @@ GNOME=(
 'gnome-tweaks'
 )
 
+DEEPIN=(
+'deepin'
+'deepin-extra'
+'lightdm'
+)
+
 XFCE=(
 'xfce4'
 'xfce4-goodies'
