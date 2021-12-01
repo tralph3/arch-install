@@ -27,6 +27,7 @@ BASE_APPS=(
 'reflector'
 'usbutils'
 'wget'
+'xclip'
 'xdg-desktop-portal-kde'
 'xdg-user-dirs'
 'zsh'
