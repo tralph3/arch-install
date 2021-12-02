@@ -14,12 +14,10 @@ YmSH4jMeFaM6nlKnIzyAxem4/IU95NE9iWotuseBxgMAqF41l90BAAA=" | gunzip
     echo
     echo "Choose the device you want to install Arch Linux on:"
     echo "\x1b[1;31mThe chosen device will be completely erased and all its data will be lost"
-    echo
     echo "\x1b[33m"
     # show the drives in yellow
     lsblk
     echo "\x1b[0m"
-    echo
     echo
     PS3="Choose the root drive: "
 
@@ -101,35 +99,27 @@ YmSH4jMeFaM6nlKnIzyAxem4/IU95NE9iWotuseBxgMAqF41l90BAAA=" | gunzip
 
 print_summary() {
 
+    echo -e "\n--------------------"
     echo "Summary:"
-    echo ""
     echo ""
     # set text to bold red
     echo "\x1b[1;33m"
-    echo "The installer will erase all data on the \x1b[1;31m$ROOT_DEVICE\x1b[1;33m drive"
-    # reset styling settings
-    echo "\x1b[0m"
+    echo "The installer will erase all data on the \x1b[1;31m$ROOT_DEVICE\x1b[1;33m drive\x1b[0m"
 
     if [ $STRG_DEVICE ]; then
-        echo ""
         echo "It will use \x1b[1;33m$STRG_DEVICE\x1b[0m as a storage medium and mount it on \x1b[1;33m/mnt/Storage\x1b[0m"
     fi
 
 
     if [ $WIN_DEVICE ]; then
-        echo ""
-        echo "It will treat \x1b[1;33m$WIN_DEVICE\x1b[0m as a Windows partition and it will be mounted on \x1b[1;33m/mnt/Windows\x1b[0m"
+        echo "It will use \x1b[1;33m$WIN_DEVICE\x1b[0m as a Windows partition and mount it on \x1b[1;33m/mnt/Windows\x1b[0m"
     fi
 
-    echo ""
+    echo "Your username will be \x1b[1;33m$USR\x1b[0m"
 
-    echo "Your username will be \x1b[1;33m$USR\x1b[0m and the machine's hostname is \x1b[1;33m$HOSTNAME\x1b[0m"
-
-    echo ""
+    echo "The machine's hostname will be \x1b[1;33m$HOSTNAME\x1b[0m"
 
     echo "Your Deskop Environment will be \x1b[1;33m$DE\x1b[0m"
-
-    echo ""
 
     read "ANS?Proceed with installation? [y/N]: "
 
