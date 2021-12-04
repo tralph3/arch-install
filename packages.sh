@@ -45,6 +45,7 @@ APPS=(
 'firefox'
 'flameshot'
 'gamemode'
+'lib32-gamemode'
 'gimp'
 'gparted'
 'htop'
