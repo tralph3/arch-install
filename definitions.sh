@@ -89,7 +89,7 @@ YmSH4jMeFaM6nlKnIzyAxem4/IU95NE9iWotuseBxgMAqF41l90BAAA=" | gunzip
     do
         if [ $de ]; then
             DE=$de
-            echo "DE=$de" >> vars.sh
+            echo "export DE=$de" >> vars.sh
             break
         fi
     done
