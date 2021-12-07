@@ -405,7 +405,6 @@ install_applications() {
 
     sudo -u ${USR} paru --needed --noconfirm -S ${AUR[@]}
     install_dotfiles
-    install_powerlevel10k
     configure_nvim
 
     # revert the changes
@@ -445,12 +444,6 @@ install_dotfiles() {
     chown -R ${USR} ${USR_HOME}
     chgrp -R ${USR} ${USR_HOME}
     sudo -u ${USR} ${USR_HOME}/.dotfiles/install.sh
-}
-
-install_powerlevel10k() {
-    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${USR_HOME}/.config/powerlevel10k
-    chown -R ${USR} ${USR_HOME}
-    chgrp -R ${USR} ${USR_HOME}
 }
 
 configure_nvim() {
