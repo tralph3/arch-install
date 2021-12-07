@@ -130,13 +130,13 @@ DEEPIN=(
 'deepin'
 'deepin-extra'
 'lightdm'
-'ligthdm-gtk-greeter'
+'lightdm-gtk-greeter'
 'xorg-server'
 )
 
 XFCE=(
 'lightdm'
-'ligthdm-gtk-greeter'
+'lightdm-gtk-greeter'
 'xfce4'
 'xfce4-goodies'
 'xorg-server'
