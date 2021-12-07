@@ -76,6 +76,7 @@ APPS=(
 AUR=(
 'gdu'
 'mangohud'
+'neovim-plug'
 'nerd-fonts-ubuntu-mono'
 'proton-ge-custom-bin'
 'steam-fonts'
@@ -87,19 +88,6 @@ SERVICES=(
 'cups'
 'NetworkManager'
 'sshd'
-)
-
-COC=(
-'coc-clangd'
-'coc-eslint'
-'coc-godot'
-'coc-godot'
-'coc-html'
-'coc-markdownlint'
-'coc-pairs'
-'coc-pyright'
-'coc-rust-analyzer'
-'coc-tsserver'
 )
 
 GPU_DRIVERS=()

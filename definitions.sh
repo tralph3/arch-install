@@ -454,20 +454,8 @@ install_powerlevel10k() {
 }
 
 configure_nvim() {
-    # init.vim installs plug and plugins automatically if it's not there
+    # init.vim installs plugins automatically if they're not there
     sudo -u ${USR} nvim
-
-    sudo -u ${USR} mkdir -vp ${USR_HOME}/.config/coc/extensions
-    cd ${USR_HOME}/.config/coc/extensions
-    sudo -u ${USR} echo '{"dependencies":{}}'> package.json
-    chown ${USR} package.json
-
-    # install extensions
-    sudo -u ${USR} npm install ${COC[@]} --global-style --ignore-scripts\
-        --no-bin-links --no-package-lock --only=prod
-
-    # return to previous directory
-    cd -
 }
 
 
