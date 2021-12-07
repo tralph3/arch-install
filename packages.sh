@@ -33,6 +33,7 @@ BASE_APPS=(
 'zsh'
 'zsh-autosuggestions'
 'zsh-syntax-highlighting'
+'zsh-theme-powerlevel10k'
 )
 
 APPS=(
