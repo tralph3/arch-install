@@ -15,6 +15,7 @@ BASE_APPS=(
 'dosfstools'
 'efibootmgr'
 'git'
+'gnu-free-fonts'
 'grub'
 'linux-headers'
 'man-db'
