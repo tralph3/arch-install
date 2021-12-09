@@ -40,7 +40,6 @@ BASE_APPS=(
 APPS=(
 'android-tools'
 'audacity'
-'bc'
 'discord'
 'exa'
 'ffmpeg'
@@ -57,7 +56,6 @@ APPS=(
 'nano'
 'neofetch'
 'neovim'
-'npm'
 'numlockx'
 'p7zip'
 'qbittorrent'
