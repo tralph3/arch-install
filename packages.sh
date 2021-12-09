@@ -148,5 +148,6 @@ ENLIGHTENMENT=(
 'enlightenment'
 'lightdm'
 'lightdm-gtk-greeter'
+'terminology'
 'xorg-server'
 )
