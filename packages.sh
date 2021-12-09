@@ -143,3 +143,10 @@ XFCE=(
 'xfce4-goodies'
 'xorg-server'
 )
+
+ENLIGHTENMENT=(
+'enlightenment'
+'lightdm'
+'lightdm-gtk-greeter'
+'xorg-server'
+)
