@@ -1,16 +1,14 @@
 #!/bin/bash
 
+# core system components
 BASE=(
     'base'
     'linux'
     'linux-firmware'
 )
 
+# basic system components
 BASE_APPS=(
-    'base-devel'
-    'cargo'
-    'cronie'
-    'cups'
     'dialog'
     'dosfstools'
     'efibootmgr'
@@ -19,7 +17,6 @@ BASE_APPS=(
     'grub'
     'linux-headers'
     'man-db'
-    'mtools'
     'network-manager-applet'
     'networkmanager'
     'openssh'
@@ -28,61 +25,62 @@ BASE_APPS=(
     'reflector'
     'usbutils'
     'wget'
-    'xclip'
-    'xdg-desktop-portal-kde'
     'xdg-user-dirs'
+)
+
+# user applications
+APPS=(
+    'android-tools'
+    'audacity'
+    'base-devel'
+    'cronie'
+    'cups'
+    'exa'
+    'ffmpeg'
+    'firefox'
+    'flameshot'
+    'gimp'
+    'htop'
+    'mlocate'
+    'mpv'
+    'mtools'
+    'neofetch'
+    'neovim'
+    'neovim-plug'
+    'nerd-fonts-ubuntu-mono'
+    'numlockx'
+    'p7zip'
+    'qbittorrent'
+    'sudo'
+    'unrar'
+    'unzip'
+    'xclip'
+    'zenity'
+    'zip'
     'zsh'
     'zsh-autosuggestions'
     'zsh-syntax-highlighting'
     'zsh-theme-powerlevel10k'
 )
 
-APPS=(
-    'android-tools'
-    'audacity'
+GAMING_APPS=(
     'discord'
-    'exa'
-    'ffmpeg'
-    'firefox'
-    'flameshot'
     'gamemode'
     'lib32-gamemode'
-    'gimp'
-    'gparted'
-    'htop'
     'lutris'
-    'mlocate'
-    'mpv'
-    'nano'
-    'neofetch'
-    'neovim'
-    'numlockx'
-    'p7zip'
-    'qbittorrent'
+    'mangohud'
+    'proton-ge-custom-bin'
     'steam'
+    'steam-fonts'
+    'steam-metadata-editor-git'
     'steam-native-runtime'
-    'sudo'
-    'unrar'
-    'unzip'
-    'vim'
     'wine'
     'wine-gecko'
     'wine-mono'
     'winetricks'
-    'zenity'
-    'zip'
 )
 
-AUR=(
-    'gdu'
-    'mangohud'
-    'neovim-plug'
-    'nerd-fonts-ubuntu-mono'
-    'proton-ge-custom-bin'
-    'steam-fonts'
-    'steam-metadata-editor-git'
-)
-
+# all of these will get enabled
 SERVICES=(
     'cronie'
     'cups'
@@ -90,8 +88,13 @@ SERVICES=(
     'sshd'
 )
 
+# this will get populated automatically
 GPU_DRIVERS=()
 
+
+########################
+# DESKTOP ENVIRONMENTS #
+########################
 KDE=(
     'ark'
     'dolphin'
@@ -118,6 +121,7 @@ KDE=(
     'plasma'
     'print-manager'
     'sddm'
+    'xdg-desktop-portal-kde'
 )
 
 GNOME=(

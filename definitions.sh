@@ -74,25 +74,36 @@ YmSH4jMeFaM6nlKnIzyAxem4/IU95NE9iWotuseBxgMAqF41l90BAAA=" | gunzip
 
     read "HOSTNAME?Enter this machine's hostname: "
 
+    PS3="Do you want to install applications for gaming?: "
+    select GAMING in "Yes" "No"
+    do
+        if [ $GAMING ]; then
+            break
+        fi
+    done
+
     # detect wifi card
     if [ "$(lspci -d ::280)" ]; then
         WIFI=y
     fi
 
-    echo "export USR=$USR" >> vars.sh
-    echo "export PASSWD=$PASSWD" >> vars.sh
-    echo "export HOSTNAME=$HOSTNAME" >> vars.sh
-    echo "export WIFI=$WIFI" >> vars.sh
 
     PS3="Choose your desktop environment: "
-    select de in "KDE" "GNOME" "DEEPIN" "XFCE" "ENLIGHTENMENT" "MATE"
+    select DE in "KDE" "GNOME" "DEEPIN" "XFCE" "ENLIGHTENMENT" "MATE"
     do
-        if [ $de ]; then
-            DE=$de
-            echo "export DE=$de" >> vars.sh
+        if [ $DE ]; then
             break
         fi
     done
+
+    cat <<- EOL > vars.sh
+		export DE=$DE
+		export USR=$USR
+		export PASSWD=$PASSWD
+		export HOSTNAME=$HOSTNAME
+		export WIFI=$WIFI
+		export GAMING=$GAMING
+	EOL
 
     print_summary
 }
@@ -274,7 +285,7 @@ configure_locale() {
 # BASE #
 ########
 prepare_system() {
-    # install basic utilities
+    # install basic system components
     if [ "$WIFI" = "y" ]; then
         BASE_APPS+=('wpa_supplicant' 'wireless_tools')
     fi
@@ -350,6 +361,7 @@ setup_users() {
 #######
 setup_gui() {
 
+    # add the default DM to the list of services to be enabled
     case $DE in
 
         KDE)
@@ -404,14 +416,18 @@ detect_drivers(){
 # CUSTOMIZATION #
 #################
 install_applications() {
-    pacman --needed --noconfirm -S ${APPS[@]}
     install_paru
 
     # let the regular user use sudo without password for these commands
     sed -i "s/^%wheel ALL=(ALL) ALL/# %wheel ALL=(ALL) ALL/" /etc/sudoers
     sed -i "s/^# %wheel ALL=(ALL) NOPASSWD: ALL/%wheel ALL=(ALL) NOPASSWD: ALL/" /etc/sudoers
 
-    sudo -u ${USR} paru --needed --noconfirm -S ${AUR[@]}
+    sudo -u ${USR} paru --needed --noconfirm -S ${APPS[@]}
+
+    if [ "${GAMING}" == "Yes" ]; then
+        sudo -u ${USR} paru --needed --noconfirm -S ${GAMING_APPS[@]}
+    fi
+
     install_dotfiles
     configure_nvim
 
@@ -421,9 +437,9 @@ install_applications() {
 }
 
 install_paru() {
-    # use build directory to intall pary as "nobody" user
+    # use build directory to intall paru as "nobody" user
     # change the directory's group to "nobody" and make it sticky
-    # so that all files within get the same properties
+    # so that all files within get the same permissions
     mkdir /home/build
     cd /home/build
     chgrp nobody /home/build
