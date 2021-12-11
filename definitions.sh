@@ -132,7 +132,7 @@ print_summary() {
 
     echo "Your Deskop Environment will be \x1b[1;33m$DE\x1b[0m"
 
-    if [ "${GAMING}" == "Yes" ]; then
+    if [ "${GAMING}" = "Yes" ]; then
         echo "You \x1b[1;33mWILL\x1b[0m install gaming packages"
     else
         echo "You \x1b[1;33mWILL NOT\x1b[0m install gaming packages"
