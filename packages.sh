@@ -9,6 +9,7 @@ BASE=(
 
 # basic system components
 BASE_APPS=(
+    'base-devel'
     'dialog'
     'dosfstools'
     'efibootmgr'
@@ -33,7 +34,6 @@ BASE_APPS=(
 APPS=(
     'android-tools'
     'audacity'
-    'base-devel'
     'cronie'
     'cups'
     'exa'
