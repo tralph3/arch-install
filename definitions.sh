@@ -413,8 +413,6 @@ detect_drivers(){
     elif [[ "${GPU}" == *"Intel"* ]]; then
         GPU_DRIVERS+=('mesa' 'lib32-mesa' 'vulkan-intel')
     fi
-
-    echo "${GPU_DRIVERS[@]}"
 }
 
 
