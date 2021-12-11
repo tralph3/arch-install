@@ -24,10 +24,10 @@ BASE_APPS=(
     'os-prober'
     'python'
     'reflector'
-    'sudo'
     'usbutils'
     'wget'
     'xdg-user-dirs'
+    'zsh'
 )
 
 # user applications
@@ -57,7 +57,6 @@ APPS=(
     'xclip'
     'zenity'
     'zip'
-    'zsh'
     'zsh-autosuggestions'
     'zsh-syntax-highlighting'
     'zsh-theme-powerlevel10k'
