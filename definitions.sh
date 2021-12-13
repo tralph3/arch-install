@@ -402,7 +402,9 @@ setup_gui() {
 
     pacman --needed --noconfirm -S ${DE[@]}
     detect_drivers
-    pacman --needed --noconfirm -S ${GPU_DRIVERS[@]}
+    if [ $GPU_DRIVERS ]; then
+        pacman --needed --noconfirm -S ${GPU_DRIVERS[@]}
+    fi
 }
 
 detect_drivers(){
