@@ -426,11 +426,11 @@ detect_drivers(){
 # CUSTOMIZATION #
 #################
 install_applications() {
-    install_paru
-
     # let the regular user use sudo without password for these commands
     sed -i "s/^%wheel ALL=(ALL) ALL/# %wheel ALL=(ALL) ALL/" /etc/sudoers
     sed -i "s/^# %wheel ALL=(ALL) NOPASSWD: ALL/%wheel ALL=(ALL) NOPASSWD: ALL/" /etc/sudoers
+
+    install_paru
 
     sudo -u ${USR} paru --needed --noconfirm -S ${APPS[@]}
 
@@ -447,36 +447,25 @@ install_applications() {
 }
 
 install_paru() {
-    # use build directory to intall paru as "nobody" user
-    # change the directory's group to "nobody" and make it sticky
-    # so that all files within get the same permissions
-    mkdir /home/build
-    cd /home/build
-    chgrp nobody /home/build
-    chmod g+ws /home/build
-    setfacl -m u::rwx,g::rwx /home/build
-    setfacl -d --set u::rwx,g::rwx,o::- /home/build
+    cd /home/${USR}
 
     # clone the repo
-    git clone https://aur.archlinux.org/paru-bin.git paru
+    sudo -u ${USR} git clone https://aur.archlinux.org/paru-bin.git paru
     cd paru
 
-    # make the package as "nobody"
-    sudo -u nobody makepkg
-
-    # install the package as root
-    pacman --noconfirm -U paru-bin*.zst
+    # make the package
+    sudo -u ${USR} makepkg -si --noconfirm
 
     # clean up
+    cd ..
+    rm -rf paru
     cd
-    rm -rf /home/build
 }
 
 install_dotfiles() {
     git clone https://github.com/tralph3/.dotfiles ${USR_HOME}/.dotfiles
     chmod +x ${USR_HOME}/.dotfiles/install.sh
-    chown -R ${USR} ${USR_HOME}
-    chgrp -R ${USR} ${USR_HOME}
+    chown -R ${USR}:${USR} ${USR_HOME}
     sudo -u ${USR} ${USR_HOME}/.dotfiles/install.sh
 }
 
