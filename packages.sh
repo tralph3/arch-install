@@ -94,6 +94,45 @@ GPU_DRIVERS=()
 ########################
 # DESKTOP ENVIRONMENTS #
 ########################
+ENVIRONMENTS=(
+    'BUDGIE'
+    'DEEPIN'
+    'ENLIGHTENMENT'
+    'GNOME'
+    'KDE'
+    'MATE'
+    'XFCE'
+)
+
+BUDGIE=(
+    'budgie-desktop'
+    'lightdm'
+    'lightdm-gtk-greeter'
+    'xorg-server'
+)
+
+DEEPIN=(
+    'deepin'
+    'deepin-extra'
+    'lightdm'
+    'lightdm-gtk-greeter'
+    'xorg-server'
+)
+
+ENLIGHTENMENT=(
+    'enlightenment'
+    'lightdm'
+    'lightdm-gtk-greeter'
+    'terminology'
+    'xorg-server'
+)
+
+GNOME=(
+    'gdm'
+    'gnome'
+    'gnome-tweaks'
+)
+
 KDE=(
     'ark'
     'dolphin'
@@ -123,17 +162,11 @@ KDE=(
     'xdg-desktop-portal-kde'
 )
 
-GNOME=(
-    'gdm'
-    'gnome'
-    'gnome-tweaks'
-)
-
-DEEPIN=(
-    'deepin'
-    'deepin-extra'
+MATE=(
     'lightdm'
     'lightdm-gtk-greeter'
+    'mate'
+    'mate-extra'
     'xorg-server'
 )
 
@@ -142,21 +175,5 @@ XFCE=(
     'lightdm-gtk-greeter'
     'xfce4'
     'xfce4-goodies'
-    'xorg-server'
-)
-
-ENLIGHTENMENT=(
-    'enlightenment'
-    'lightdm'
-    'lightdm-gtk-greeter'
-    'terminology'
-    'xorg-server'
-)
-
-MATE=(
-    'lightdm'
-    'lightdm-gtk-greeter'
-    'mate'
-    'mate-extra'
     'xorg-server'
 )

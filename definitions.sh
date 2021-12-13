@@ -89,7 +89,7 @@ YmSH4jMeFaM6nlKnIzyAxem4/IU95NE9iWotuseBxgMAqF41l90BAAA=" | gunzip
 
 
     PS3="Choose your desktop environment: "
-    select DE in "KDE" "GNOME" "DEEPIN" "XFCE" "ENLIGHTENMENT" "MATE"
+    select DE in ${ENVIRONMENTS[@]}
     do
         if [ $DE ]; then
             break
@@ -370,28 +370,32 @@ setup_gui() {
     # add the default DM to the list of services to be enabled
     case $DE in
 
-        KDE)
-            DE=${KDE[@]}
-            SERVICES+=('sddm')
-            ;;
-        GNOME)
-            DE=${GNOME[@]}
-            SERVICES+=('gdm')
+        BUDGIE)
+            DE=${BUDGIE[@]}
+            SERVICES+=('lightdm')
             ;;
         DEEPIN)
             DE=${DEEPIN[@]}
-            SERVICES+=('lightdm')
-            ;;
-        XFCE)
-            DE=${XFCE[@]}
             SERVICES+=('lightdm')
             ;;
         ENLIGHTENMENT)
             DE=${ENLIGHTENMENT[@]}
             SERVICES+=('lightdm')
             ;;
+        GNOME)
+            DE=${GNOME[@]}
+            SERVICES+=('gdm')
+            ;;
+        KDE)
+            DE=${KDE[@]}
+            SERVICES+=('sddm')
+            ;;
         MATE)
             DE=${MATE[@]}
+            SERVICES+=('lightdm')
+            ;;
+        XFCE)
+            DE=${XFCE[@]}
             SERVICES+=('lightdm')
             ;;
     esac
