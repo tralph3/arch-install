@@ -432,10 +432,10 @@ install_applications() {
 
     install_paru
 
-    sudo -u ${USR} paru --needed --noconfirm -S ${APPS[@]}
+    sudo su ${USR} -s /bin/zsh -lc "paru --needed --noconfirm -S ${APPS[*]}"
 
     if [ "${GAMING}" == "Yes" ]; then
-        sudo -u ${USR} paru --needed --noconfirm -S ${GAMING_APPS[@]}
+        sudo su ${USR} -s /bin/zsh -lc "paru --needed --noconfirm -S ${GAMING_APPS[*]}"
     fi
 
     install_dotfiles
