@@ -188,16 +188,21 @@ partition_and_mount_uefi() {
 		w           # write
 	EOL
 
+    # get partition names
+    PARTITIONS=($(for PARTITION in $(dirname /sys/block/$(basename $ROOT_DEVICE)/*/partition); do
+        basename $PARTITION
+    done))
+
     # partition formatting
-    mkfs.fat -F 32 ${ROOT_DEVICE}1     # boot
-    mkfs.ext4 ${ROOT_DEVICE}2 -L ROOT  # root
+    mkfs.fat -F 32 /dev/$PARTITIONS[1]     # boot
+    mkfs.ext4 /dev/$PARTITIONS[2] -L ROOT  # root
 
     # mount partitions
     mkdir -pv /mnt
-    mount ${ROOT_DEVICE}2 /mnt
+    mount /dev/$PARTITIONS[2] /mnt
 
     mkdir -pv /mnt/boot
-    mount ${ROOT_DEVICE}1 /mnt/boot
+    mount /dev/$PARTITIONS[1] /mnt/boot
 
     if [ $STRG_DEVICE ]; then
         mkdir -pv /mnt/mnt/Storage
@@ -228,12 +233,17 @@ partition_and_mount_bios() {
 		w           # write
 	EOL
 
+    # get partition names
+    PARTITIONS=($(for PARTITION in $(dirname /sys/block/$(basename $ROOT_DEVICE)/*/partition); do
+        basename $PARTITION
+    done))
+
     # partition formatting
-    mkfs.ext4 ${ROOT_DEVICE}1 -L ROOT  # root/boot
+    mkfs.ext4 /dev/$PARTITIONS[1] -L ROOT  # root/boot
 
     # mount partitions
     mkdir -pv /mnt
-    mount ${ROOT_DEVICE}1 /mnt
+    mount  /dev/$PARTITIONS[1] /mnt
 
     if [ $STRG_DEVICE ]; then
         mkdir -pv /mnt/mnt/Storage
