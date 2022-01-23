@@ -18,17 +18,14 @@ Things like timezone, partitioning scheme, filesystem, and anything else not con
 
 ## Usage
 
-Boot up the Arch Linux installer, and install git with:
+Create a folder and download the script with curl:
 
-    pacman -Sy git
-
-Then clone the repository with:
-
-    git clone https://github.com/tralph3/arch-install
-
-Then `cd` into its folder, and run the installer:
-
+    mkdir arch-install
     cd arch-install
+    curl -Lo install.sh shorturl.at/lvKR8
+
+Then run the installer:
+
     ./install.sh
 
 ## Modifying

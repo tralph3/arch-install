@@ -1,6 +1,10 @@
 #!/bin/zsh
 # tralph3's Arch installation script
 
+# fetch scripts
+curl -Lo definitions.sh "https://raw.githubusercontent.com/tralph3/arch-install/master/definitions.sh"
+curl -Lo packages.sh "https://raw.githubusercontent.com/tralph3/arch-install/master/packages.sh"
+
 source definitions.sh
 source packages.sh
 
