@@ -33,6 +33,7 @@ BASE_APPS=(
 
 # user applications
 APPS=(
+    'alacritty'
     'android-tools'
     'audacity'
     'cronie'
@@ -152,7 +153,6 @@ KDE=(
     'kipi-plugins'
     'kmix'
     'kolourpaint'
-    'konsole'
     'kontrast'
     'kwrite'
     'okular'
