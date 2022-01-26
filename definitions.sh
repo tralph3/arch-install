@@ -448,6 +448,10 @@ install_applications() {
         sudo su ${USR} -s /bin/zsh -lc "paru --needed --noconfirm -S ${GAMING_APPS[*]}"
     fi
 
+    # this creates the default profiles for firefox
+    # it's needed to have a directory to drop some dotfiles
+    timeout 1s firefox --headless
+
     install_dotfiles
     configure_nvim
 
