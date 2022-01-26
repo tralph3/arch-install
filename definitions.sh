@@ -450,7 +450,7 @@ install_applications() {
 
     # this creates the default profiles for firefox
     # it's needed to have a directory to drop some dotfiles
-    timeout 1s firefox --headless
+    sudo su ${USR} -s /bin/zsh -lc "timeout 1s firefox --headless"
 
     install_dotfiles
     configure_nvim
