@@ -22,7 +22,7 @@ Create a folder and download the script with curl:
 
     mkdir arch-install
     cd arch-install
-    curl -Lo install.sh shorturl.at/lvKR8
+    curl -Lo install.sh tinyurl.com/tralph3-arch
 
 Mark the file as executable, then run it:
 
