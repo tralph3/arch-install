@@ -377,11 +377,18 @@ setup_users() {
 #######
 setup_gui() {
 
+    # paru is needed for some AUR packages
+    install_paru
+
     # add the default DM to the list of services to be enabled
     case $DE in
 
         BUDGIE)
             DE=${BUDGIE[@]}
+            SERVICES+=('lightdm')
+            ;;
+        CINNAMON)
+            DE=${CINNAMON[@]}
             SERVICES+=('lightdm')
             ;;
         DEEPIN)
@@ -400,6 +407,10 @@ setup_gui() {
             DE=${KDE[@]}
             SERVICES+=('sddm')
             ;;
+        LXQT)
+            DE=${LXQT[@]}
+            SERVICES+=('sddm')
+            ;;
         MATE)
             DE=${MATE[@]}
             SERVICES+=('lightdm')
@@ -410,11 +421,28 @@ setup_gui() {
             ;;
     esac
 
-    pacman --needed --noconfirm -S ${DE[@]}
+    sudo su ${USR} -s /bin/zsh -lc "paru --needed --noconfirm -S ${DE[*]}"
     detect_drivers
     if [ $GPU_DRIVERS ]; then
         pacman --needed --noconfirm -S ${GPU_DRIVERS[@]}
     fi
+}
+
+install_paru() {
+    OG_DIR=$(pwd)
+    cd /home/${USR}
+
+    # clone the repo
+    sudo -u ${USR} git clone https://aur.archlinux.org/paru-bin.git paru
+    cd paru
+
+    # make the package
+    sudo -u ${USR} makepkg -si --noconfirm
+
+    # clean up
+    cd ..
+    rm -rf paru
+    cd $OG_DIR
 }
 
 detect_drivers(){
@@ -440,8 +468,6 @@ install_applications() {
     sed -i "s/^%wheel ALL=(ALL) ALL/# %wheel ALL=(ALL) ALL/" /etc/sudoers
     sed -i "s/^# %wheel ALL=(ALL) NOPASSWD: ALL/%wheel ALL=(ALL) NOPASSWD: ALL/" /etc/sudoers
 
-    install_paru
-
     sudo su ${USR} -s /bin/zsh -lc "paru --needed --noconfirm -S ${APPS[*]}"
 
     if [ "${GAMING}" == "Yes" ]; then
@@ -458,22 +484,6 @@ install_applications() {
     # revert the changes
     sed -i "s/^# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/" /etc/sudoers
     sed -i "s/^%wheel ALL=(ALL) NOPASSWD: ALL/# %wheel ALL=(ALL) NOPASSWD: ALL/" /etc/sudoers
-}
-
-install_paru() {
-    cd /home/${USR}
-
-    # clone the repo
-    sudo -u ${USR} git clone https://aur.archlinux.org/paru-bin.git paru
-    cd paru
-
-    # make the package
-    sudo -u ${USR} makepkg -si --noconfirm
-
-    # clean up
-    cd ..
-    rm -rf paru
-    cd
 }
 
 install_dotfiles() {

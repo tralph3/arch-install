@@ -24,8 +24,9 @@ Create a folder and download the script with curl:
     cd arch-install
     curl -Lo install.sh shorturl.at/lvKR8
 
-Then run the installer:
+Mark the file as executable, then run it:
 
+    chmod +x install.sh
     ./install.sh
 
 ## Modifying
@@ -61,6 +62,8 @@ This array will get populated automatically when the script detects the appropia
 After all these arrays, you will see an array for each supported Desktop Environment. Firstly, there's the `ENVIRONMENTS` array, which simply contains the name of each Desktop Environment. This array is used to list the names of every supported DE at the start of the installer. The name shown here must be the same as the one of the array it represents.
 
 Then, each of the arrays for every DE, contains the packages to be installed if that DE is selected. KDE in particular has a tons of packages listed in order to avoid the bloat that comes with the `kde-applications` meta package. All DEs will come with their own Display Manager and their respective services will get enabled.
+
+**AUR packages are supported for all DE arrays**.
 
 ## Default Settings
 

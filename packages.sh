@@ -97,16 +97,25 @@ GPU_DRIVERS=()
 ########################
 ENVIRONMENTS=(
     'BUDGIE'
+    'CINNAMON'
     'DEEPIN'
     'ENLIGHTENMENT'
     'GNOME'
     'KDE'
+    'LXQT'
     'MATE'
     'XFCE'
 )
 
 BUDGIE=(
     'budgie-desktop'
+    'lightdm'
+    'lightdm-gtk-greeter'
+    'xorg-server'
+)
+
+CINNAMON=(
+    'cinnamon'
     'lightdm'
     'lightdm-gtk-greeter'
     'xorg-server'
@@ -160,6 +169,14 @@ KDE=(
     'print-manager'
     'sddm'
     'xdg-desktop-portal-kde'
+)
+
+LXQT=(
+    'breeze-icons'
+    'lxqt'
+    'lxqt-connman-applet'
+    'sddm'
+    'slock'
 )
 
 MATE=(
