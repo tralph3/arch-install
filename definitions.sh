@@ -377,6 +377,10 @@ setup_users() {
 #######
 setup_gui() {
 
+    # let the regular user use sudo without password for these commands
+    sed -i "s/^%wheel ALL=(ALL) ALL/# %wheel ALL=(ALL) ALL/" /etc/sudoers
+    sed -i "s/^# %wheel ALL=(ALL) NOPASSWD: ALL/%wheel ALL=(ALL) NOPASSWD: ALL/" /etc/sudoers
+
     # paru is needed for some AUR packages
     install_paru
 
@@ -464,10 +468,6 @@ detect_drivers(){
 # CUSTOMIZATION #
 #################
 install_applications() {
-    # let the regular user use sudo without password for these commands
-    sed -i "s/^%wheel ALL=(ALL) ALL/# %wheel ALL=(ALL) ALL/" /etc/sudoers
-    sed -i "s/^# %wheel ALL=(ALL) NOPASSWD: ALL/%wheel ALL=(ALL) NOPASSWD: ALL/" /etc/sudoers
-
     sudo su ${USR} -s /bin/zsh -lc "paru --needed --noconfirm -S ${APPS[*]}"
 
     if [ "${GAMING}" == "Yes" ]; then
