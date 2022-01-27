@@ -1,4 +1,7 @@
 # Arch Linux installation script
+Installing Arch has never been simpler.
+
+<img src="showcase.gif"></img>
 
 ## Introduction
 
@@ -18,10 +21,8 @@ Things like timezone, partitioning scheme, filesystem, and anything else not con
 
 ## Usage
 
-Create a folder and download the script with curl:
+Download the script with curl:
 
-    mkdir arch-install
-    cd arch-install
     curl -Lo install.sh tinyurl.com/tralph3-arch
 
 Mark the file as executable, then run it:
@@ -67,7 +68,9 @@ Then, each of the arrays for every DE, contains the packages to be installed if 
 
 ## Default Settings
 
-So, what things do you need to change to make this script "yours"? Here's a list of all the default settings, next to each section, you'll see the name of the function responsible for setting it up in the `definitions.sh` file:
+So, what things do you need to change to make this script "yours"? Firstly, fork the repo and change the download urls. I used [tinyurl](https://tinyurl.com). Simply open the `install.sh` file on GitHub, click on the "Raw" button, and there's the link you have to shorten. Do the same for `definitions.sh` and `packages.sh` and replace the links inside `install.sh` with yours.
+
+Here's a list of all the default settings, next to each section, you'll see the name of the function responsible for setting it up in the `definitions.sh` file:
 
 ### Pacman (`configure_pacman`)
 
