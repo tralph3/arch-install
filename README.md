@@ -121,18 +121,18 @@ Here's a list of all the default settings, next to each section, you'll see the 
 * The user gets sudo privileges through the wheel group
 * "Defaults insults" is enabled in sudoers
 
-### Drivers and DE (`setup_gui`)
+### Drivers and DE (`prepare_gui`)
 
+* Here the variables to install the DE are set
 * Depending on the chosen DE, a Display Manager gets installed with it
-* GPU drivers get detected automatically
-    * Old NVIDIA cards will need to change this since the drivers are always latest
 
 ### Customization (`install_applications`)
 
 * `paru` gets installed as the AUR helper with the `paru-bin` package to avoid compile times
+* GPU drivers get detected automatically
+    * Old NVIDIA cards will need to change this since the drivers are always latest
 * User defined applications get installed here, along with gaming ones if appropiate
 * My personal dotfiles get installed
-* Neovim plugins get installed
 
 ### Services (`enable_services`)
 

@@ -175,6 +175,7 @@ partition_and_mount_uefi() {
     # disk partitioning
     wipefs --all --force $ROOT_DEVICE
     # cut removes comments from heredoc
+    # this: "<<-" ignores indentation, but only for tab characters
     cut -d " " -f 1 <<- EOL | fdisk --wipe always --wipe-partitions always $ROOT_DEVICE
 		g           # gpt partition scheme
 		n           # new partition
@@ -224,6 +225,7 @@ partition_and_mount_bios() {
     # disk partitioning
     wipefs --all --force $ROOT_DEVICE
     # cut removes comments from heredoc
+    # this: "<<-" ignores indentation, but only for tab characters
     cut -d " " -f 1 <<- EOL | fdisk --wipe always --wipe-partitions always $ROOT_DEVICE
 		n           # new partition
 		            # primary partition
@@ -279,11 +281,13 @@ setup_network() {
 
     echo "${HOSTNAME}" > /etc/hostname
 
-    cat >> /etc/hosts <<EOL
-127.0.0.1   localhost
-::1         localhost
-127.0.1.1   ${HOSTNAME}.localdomain ${HOSTNAME}
-EOL
+    # this: "<<-" ignores indentation, but only for tab characters
+    cat >> /etc/hosts <<- EOL
+		127.0.0.1   localhost
+		::1         localhost
+		127.0.1.1   ${HOSTNAME}.localdomain ${HOSTNAME}
+	EOL
+
     echo -e "${PASSWD}\n${PASSWD}\n" | passwd
 }
 
@@ -307,6 +311,10 @@ prepare_system() {
     fi
 
     pacman --noconfirm --needed -Syu ${BASE_APPS[@]}
+    # update pacman keys
+    pacman-key --init
+    pacman-key --populate
+
     install_cpu_ucode
 
     # install grub
@@ -375,16 +383,9 @@ setup_users() {
 #######
 # GUI #
 #######
-setup_gui() {
-
-    # let the regular user use sudo without password for these commands
-    sed -i "s/^%wheel ALL=(ALL) ALL/# %wheel ALL=(ALL) ALL/" /etc/sudoers
-    sed -i "s/^# %wheel ALL=(ALL) NOPASSWD: ALL/%wheel ALL=(ALL) NOPASSWD: ALL/" /etc/sudoers
-
-    # paru is needed for some AUR packages
-    install_paru
-
+prepare_gui() {
     # add the default DM to the list of services to be enabled
+    # and set up the DE variable
     case $DE in
 
         BUDGIE)
@@ -424,12 +425,38 @@ setup_gui() {
             SERVICES+=('lightdm')
             ;;
     esac
+}
 
+
+#################
+# CUSTOMIZATION #
+#################
+install_applications() {
+    # let the regular user use sudo without password for these commands
+    sed -i "s/^%wheel ALL=(ALL) ALL/# %wheel ALL=(ALL) ALL/" /etc/sudoers
+    sed -i "s/^# %wheel ALL=(ALL) NOPASSWD: ALL/%wheel ALL=(ALL) NOPASSWD: ALL/" /etc/sudoers
+
+    # paru is needed for some AUR packages
+    install_paru
+
+    # install the chosen DE and GPU drivers
     sudo su ${USR} -s /bin/zsh -lc "paru --needed --noconfirm -S ${DE[*]}"
     detect_drivers
     if [ $GPU_DRIVERS ]; then
         pacman --needed --noconfirm -S ${GPU_DRIVERS[@]}
     fi
+
+    # install user applications
+    sudo su ${USR} -s /bin/zsh -lc "paru --needed --noconfirm -S ${APPS[*]}"
+    if [ "${GAMING}" == "Yes" ]; then
+        sudo su ${USR} -s /bin/zsh -lc "paru --needed --noconfirm -S ${GAMING_APPS[*]}"
+    fi
+
+    install_dotfiles
+
+    # revert the changes
+    sed -i "s/^# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/" /etc/sudoers
+    sed -i "s/^%wheel ALL=(ALL) NOPASSWD: ALL/# %wheel ALL=(ALL) NOPASSWD: ALL/" /etc/sudoers
 }
 
 install_paru() {
@@ -463,37 +490,16 @@ detect_drivers(){
     fi
 }
 
-
-#################
-# CUSTOMIZATION #
-#################
-install_applications() {
-    sudo su ${USR} -s /bin/zsh -lc "paru --needed --noconfirm -S ${APPS[*]}"
-
-    if [ "${GAMING}" == "Yes" ]; then
-        sudo su ${USR} -s /bin/zsh -lc "paru --needed --noconfirm -S ${GAMING_APPS[*]}"
-    fi
-
+install_dotfiles() {
     # this creates the default profiles for firefox
     # it's needed to have a directory to drop some dotfiles
     sudo su ${USR} -s /bin/zsh -lc "timeout 1s firefox --headless"
 
-    install_dotfiles
-    configure_nvim
-
-    # revert the changes
-    sed -i "s/^# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/" /etc/sudoers
-    sed -i "s/^%wheel ALL=(ALL) NOPASSWD: ALL/# %wheel ALL=(ALL) NOPASSWD: ALL/" /etc/sudoers
-}
-
-install_dotfiles() {
     git clone https://github.com/tralph3/.dotfiles ${USR_HOME}/.dotfiles
     chmod +x ${USR_HOME}/.dotfiles/install.sh
     chown -R ${USR}:${USR} ${USR_HOME}
     sudo -u ${USR} ${USR_HOME}/.dotfiles/install.sh
-}
 
-configure_nvim() {
     # init.vim installs plugins automatically if they're not there
     sudo -u ${USR} nvim
 }

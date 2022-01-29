@@ -22,7 +22,7 @@ configure_pacman
 setup_network
 prepare_system
 setup_users
-setup_gui
+prepare_gui
 install_applications
 enable_services
 exit

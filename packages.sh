@@ -9,6 +9,7 @@ BASE=(
 
 # basic system components
 BASE_APPS=(
+    'archlinux-keyring'
     'base-devel'
     'dialog'
     'dosfstools'
