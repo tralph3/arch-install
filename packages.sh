@@ -194,7 +194,7 @@ QTILE=(
     'feh'
     'lightdm'
     'lightdm-gtk-greeter'
-    'mint-backgrouds-una'
+    'mint-backgrounds-una'
     'picom-git'
     'qtile'
     'rofi'
