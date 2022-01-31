@@ -191,6 +191,7 @@ MATE=(
 )
 
 QTILE=(
+    'dunst'
     'feh'
     'lightdm'
     'lightdm-gtk-greeter'
