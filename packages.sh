@@ -35,6 +35,7 @@ BASE_APPS=(
 # user applications
 APPS=(
     'alacritty'                     # OPTIONAL: Hardware accelerated terminal emulator
+    'alsa-utils'                    # OPTIOANL: Utilities for managing alsa cards
     'android-tools'                 # OPTIONAL: Utilities for managing android devices
     'audacity'                      # OPTIONAL: Audio editor
     'cronie'                        # OPTIONAL: Task scheduler
@@ -105,6 +106,7 @@ ENVIRONMENTS=(
     'KDE'
     'LXQT'
     'MATE'
+    'QTILE'
     'XFCE'
 )
 
@@ -185,6 +187,17 @@ MATE=(
     'lightdm-gtk-greeter'
     'mate'
     'mate-extra'
+    'xorg-server'
+)
+
+QTILE=(
+    'feh'
+    'lightdm'
+    'lightdm-gtk-greeter'
+    'mint-backgrouds-una'
+    'picom-git'
+    'qtile'
+    'rofi'
     'xorg-server'
 )
 

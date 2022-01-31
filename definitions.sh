@@ -420,6 +420,10 @@ prepare_gui() {
             DE=${MATE[@]}
             SERVICES+=('lightdm')
             ;;
+        QTILE)
+            DE=${QTILE[@]}
+            SERVICES+=('lightdm')
+            ;;
         XFCE)
             DE=${XFCE[@]}
             SERVICES+=('lightdm')
