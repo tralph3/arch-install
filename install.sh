@@ -2,8 +2,13 @@
 # tralph3's Arch installation script
 
 # fetch scripts
-curl -Lo definitions.sh "https://raw.githubusercontent.com/tralph3/arch-install/master/definitions.sh"
-curl -Lo packages.sh "https://raw.githubusercontent.com/tralph3/arch-install/master/packages.sh"
+if ! [ -f definitions.sh ]; then
+    curl -Lo definitions.sh "https://raw.githubusercontent.com/tralph3/arch-install/master/definitions.sh"
+fi
+
+if ! [ -f packages.sh ]; then
+    curl -Lo packages.sh "https://raw.githubusercontent.com/tralph3/arch-install/master/packages.sh"
+fi
 
 source definitions.sh
 source packages.sh
