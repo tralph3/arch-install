@@ -374,7 +374,7 @@ setup_users() {
     export USR_HOME=$(getent passwd ${USR} | cut -d\: -f6)
 
     # let wheel group use sudo
-    sed -i "s/^# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/" /etc/sudoers
+    sed -i "0,/^# %wheel/s//%wheel/" /etc/sudoers
     # add insults to injury
     sed -i "s|@includedir /etc/sudoers.d|@includedir /etc/sudoers.d\n\nDefaults insults|" /etc/sudoers
 }
@@ -436,9 +436,8 @@ prepare_gui() {
 # CUSTOMIZATION #
 #################
 install_applications() {
-    # let the regular user use sudo without password for these commands
-    sed -i "s/^%wheel ALL=(ALL) ALL/# %wheel ALL=(ALL) ALL/" /etc/sudoers
-    sed -i "s/^# %wheel ALL=(ALL) NOPASSWD: ALL/%wheel ALL=(ALL) NOPASSWD: ALL/" /etc/sudoers
+    # let regular user run comands without password
+    echo '%wheel ALL=(ALL:ALL) NOPASSWD: ALL' >> /etc/sudoers
 
     # paru is needed for some AUR packages
     install_paru
@@ -458,9 +457,8 @@ install_applications() {
 
     install_dotfiles
 
-    # revert the changes
-    sed -i "s/^# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/" /etc/sudoers
-    sed -i "s/^%wheel ALL=(ALL) NOPASSWD: ALL/# %wheel ALL=(ALL) NOPASSWD: ALL/" /etc/sudoers
+    # remove root privileges
+    head -n -1 /etc/sudoers > /etc/sudoers
 }
 
 install_paru() {

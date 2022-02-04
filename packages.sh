@@ -196,6 +196,7 @@ QTILE=(
     'lightdm'
     'lightdm-gtk-greeter'
     'mint-backgrounds-una'
+    'pcmanfm'
     'picom-git'
     'qtile'
     'rofi'
