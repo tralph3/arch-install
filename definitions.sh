@@ -437,7 +437,7 @@ prepare_gui() {
 #################
 install_applications() {
     # let regular user run comands without password
-    echo '%wheel ALL=(ALL:ALL) NOPASSWD: ALL' >> /etc/sudoers
+    echo '%wheel ALL=(ALL:ALL) NOPASSWD: ALL' > /etc/sudoers.d/temp
 
     # paru is needed for some AUR packages
     install_paru
@@ -458,7 +458,7 @@ install_applications() {
     install_dotfiles
 
     # remove root privileges
-    head -n -1 /etc/sudoers > /etc/sudoers
+    rm /etc/sudoers.d/temp
 }
 
 install_paru() {
