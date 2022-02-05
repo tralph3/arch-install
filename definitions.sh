@@ -374,9 +374,9 @@ setup_users() {
     export USR_HOME=$(getent passwd ${USR} | cut -d\: -f6)
 
     # let wheel group use sudo
-    sed -i "0,/^# %wheel/s//%wheel/" /etc/sudoers
+    echo '%wheel ALL=(ALL:ALL) ALL' > /etc/sudoers.d/wheel_sudo
     # add insults to injury
-    sed -i "s|@includedir /etc/sudoers.d|@includedir /etc/sudoers.d\n\nDefaults insults|" /etc/sudoers
+    echo 'Defaults insults' > /etc/sudoers.d/insults
 }
 
 
