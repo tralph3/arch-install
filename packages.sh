@@ -191,16 +191,19 @@ MATE=(
 )
 
 QTILE=(
+    'breeze-gtk'
     'dunst'
     'engrampa'
     'feh'
     'lightdm'
     'lightdm-gtk-greeter'
     'mint-backgrounds-una'
-    'pcmanfm'
+    'noto-sans'
+    'papirus-icon-theme'
     'picom-git'
     'qtile'
     'rofi'
+    'thunar'
     'xorg-server'
 )
 
