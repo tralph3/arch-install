@@ -171,7 +171,6 @@ KDE=(
     'plasma'
     'print-manager'
     'sddm'
-    'xdg-desktop-portal-kde'
 )
 
 LXQT=(
@@ -204,6 +203,8 @@ QTILE=(
     'qtile'
     'rofi'
     'thunar'
+    'xdg-desktop-portal'
+    'xdg-desktop-portal-gtk'
     'xorg-server'
 )
 
