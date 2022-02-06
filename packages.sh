@@ -114,6 +114,8 @@ BUDGIE=(
     'budgie-desktop'
     'lightdm'
     'lightdm-gtk-greeter'
+    'xdg-desktop-portal'
+    'xdg-desktop-portal-gtk'
     'xorg-server'
 )
 
@@ -121,6 +123,8 @@ CINNAMON=(
     'cinnamon'
     'lightdm'
     'lightdm-gtk-greeter'
+    'xdg-desktop-portal'
+    'xdg-desktop-portal-gtk'
     'xorg-server'
 )
 
@@ -129,6 +133,8 @@ DEEPIN=(
     'deepin-extra'
     'lightdm'
     'lightdm-gtk-greeter'
+    'xdg-desktop-portal'
+    'xdg-desktop-portal-gtk'
     'xorg-server'
 )
 
@@ -137,6 +143,8 @@ ENLIGHTENMENT=(
     'lightdm'
     'lightdm-gtk-greeter'
     'terminology'
+    'xdg-desktop-portal'
+    'xdg-desktop-portal-gtk'
     'xorg-server'
 )
 
@@ -144,6 +152,8 @@ GNOME=(
     'gdm'
     'gnome'
     'gnome-tweaks'
+    'xdg-desktop-portal'
+    'xdg-desktop-portal-gnome'
 )
 
 KDE=(
@@ -171,6 +181,8 @@ KDE=(
     'plasma'
     'print-manager'
     'sddm'
+    'xdg-desktop-portal'
+    'xdg-desktop-portal-kde'
 )
 
 LXQT=(
@@ -179,6 +191,8 @@ LXQT=(
     'lxqt-connman-applet'
     'sddm'
     'slock'
+    'xdg-desktop-portal'
+    'xdg-desktop-portal-kde'
 )
 
 MATE=(
@@ -186,6 +200,8 @@ MATE=(
     'lightdm-gtk-greeter'
     'mate'
     'mate-extra'
+    'xdg-desktop-portal'
+    'xdg-desktop-portal-gtk'
     'xorg-server'
 )
 
@@ -211,6 +227,8 @@ QTILE=(
 XFCE=(
     'lightdm'
     'lightdm-gtk-greeter'
+    'xdg-desktop-portal'
+    'xdg-desktop-portal-gtk'
     'xfce4'
     'xfce4-goodies'
     'xorg-server'
