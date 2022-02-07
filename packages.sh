@@ -51,10 +51,11 @@ APPS=(
     'neofetch'                      # OPTIONAL: Display system information, with style
     'neovim'                        # OPTIONAL: Objectively better than Emacs
     'neovim-plug'                   # OPTIONAL: Plugin manager for neovim
-    'nerd-fonts-ubuntu-mono'        # OPTIONAL: Nice fonts for the terminal
+    'nerd-fonts-ubuntu-mono'        # OPTIONAL: Ubuntu fonts patched with icons
     'numlockx'                      # OPTIONAL: Set numlock from CLI
     'p7zip'                         # OPTIONAL: Support for 7zip files
     'qbittorrent'                   # OPTIONAL: Torrent downloader
+    'ttf-ubuntu-font-family'        # OPTIONAL: Ubuntu fonts
     'unrar'                         # OPTIONAL: Support for rar files
     'unzip'                         # OPTIONAL: Support for zip files
     'xclip'                         # OPTIONAL: Copy to clipboard from CLI
@@ -213,7 +214,6 @@ QTILE=(
     'lightdm'
     'lightdm-gtk-greeter'
     'mint-backgrounds-una'
-    'noto-sans'
     'papirus-icon-theme'
     'picom-git'
     'qtile'
