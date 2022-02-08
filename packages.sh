@@ -47,7 +47,7 @@ APPS=(
     'gimp'                          # OPTIONAL: Image editor
     'htop'                          # OPTIONAL: System and process manager
     'mlocate'                       # OPTIONAL: Quickly find files and directories
-    'mptfs'                         # OPTIONAL: File transfer for android devices
+    'mtpfs'                         # OPTIONAL: File transfer for android devices
     'mpv'                           # OPTIONAL: Suckless video player
     'neofetch'                      # OPTIONAL: Display system information, with style
     'neovim'                        # OPTIONAL: Objectively better than Emacs
