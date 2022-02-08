@@ -1,5 +1,3 @@
-#!/bin/bash
-
 # core system components
 BASE=(
     'base'                          # NEEDED: Base Arch Linux system
