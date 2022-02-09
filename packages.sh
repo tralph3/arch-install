@@ -43,16 +43,20 @@ APPS=(
     'firefox'                       # OPTIONAL: Web browser
     'flameshot'                     # OPTIONAL: Screenshot utility
     'gimp'                          # OPTIONAL: Image editor
+    'helvum'                        # OPTIONAL: GUI for Pipewire configuration
     'htop'                          # OPTIONAL: System and process manager
     'mlocate'                       # OPTIONAL: Quickly find files and directories
-    'mtpfs'                         # OPTIONAL: File transfer for android devices
     'mpv'                           # OPTIONAL: Suckless video player
+    'mtpfs'                         # OPTIONAL: File transfer for android devices
     'neofetch'                      # OPTIONAL: Display system information, with style
     'neovim'                        # OPTIONAL: Objectively better than Emacs
     'neovim-plug'                   # OPTIONAL: Plugin manager for neovim
     'nerd-fonts-ubuntu-mono'        # OPTIONAL: Ubuntu fonts patched with icons
     'numlockx'                      # OPTIONAL: Set numlock from CLI
     'p7zip'                         # OPTIONAL: Support for 7zip files
+    'pipewire'                      # OPTIONAL: Modern audio router and processor
+    'pipewire-alsa'                 # OPTIONAL: Pipewire alsa configuration
+    'pipewire-pulse'                # OPTIONAL: Pipewire replacement for pulseaudio
     'qbittorrent'                   # OPTIONAL: Torrent downloader
     'ttf-ubuntu-font-family'        # OPTIONAL: Ubuntu fonts
     'unrar'                         # OPTIONAL: Support for rar files
