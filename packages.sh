@@ -36,6 +36,7 @@ APPS=(
     'alsa-utils'                    # OPTIOANL: Utilities for managing alsa cards
     'android-tools'                 # OPTIONAL: Utilities for managing android devices
     'audacity'                      # OPTIONAL: Audio editor
+    'wireplumber'                   # OPTIONAL: Session manager for Pipewire
     'cronie'                        # OPTIONAL: Task scheduler
     'cups'                          # OPTIONAL: Printer manager
     'exa'                           # OPTIONAL: Replacement for the ls command
