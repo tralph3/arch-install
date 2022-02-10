@@ -217,6 +217,7 @@ QTILE=(
     'dunst'
     'engrampa'
     'feh'
+    'light'
     'lightdm'
     'lightdm-gtk-greeter'
     'mint-backgrounds-una'
