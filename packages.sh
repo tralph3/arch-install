@@ -51,6 +51,7 @@ APPS=(
     'mtpfs'                         # OPTIONAL: File transfer for android devices
     'neofetch'                      # OPTIONAL: Display system information, with style
     'neovim'                        # OPTIONAL: Objectively better than Emacs
+    'pavucontrol'                   # OPTIONAL: Pulse Audio volume control
     'neovim-plug'                   # OPTIONAL: Plugin manager for neovim
     'nerd-fonts-ubuntu-mono'        # OPTIONAL: Ubuntu fonts patched with icons
     'numlockx'                      # OPTIONAL: Set numlock from CLI
@@ -212,6 +213,7 @@ MATE=(
 
 QTILE=(
     'breeze-gtk'
+    'dex'
     'dunst'
     'engrampa'
     'feh'
