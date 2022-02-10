@@ -36,7 +36,6 @@ APPS=(
     'alsa-utils'                    # OPTIOANL: Utilities for managing alsa cards
     'android-tools'                 # OPTIONAL: Utilities for managing android devices
     'audacity'                      # OPTIONAL: Audio editor
-    'wireplumber'                   # OPTIONAL: Session manager for Pipewire
     'cronie'                        # OPTIONAL: Task scheduler
     'cups'                          # OPTIONAL: Printer manager
     'exa'                           # OPTIONAL: Replacement for the ls command
@@ -51,11 +50,11 @@ APPS=(
     'mtpfs'                         # OPTIONAL: File transfer for android devices
     'neofetch'                      # OPTIONAL: Display system information, with style
     'neovim'                        # OPTIONAL: Objectively better than Emacs
-    'pavucontrol'                   # OPTIONAL: Pulse Audio volume control
-    'neovim-plug'                   # OPTIONAL: Plugin manager for neovim
+    'neovim-plug-git'               # OPTIONAL: Plugin manager for neovim
     'nerd-fonts-ubuntu-mono'        # OPTIONAL: Ubuntu fonts patched with icons
     'numlockx'                      # OPTIONAL: Set numlock from CLI
     'p7zip'                         # OPTIONAL: Support for 7zip files
+    'pavucontrol'                   # OPTIONAL: Pulse Audio volume control
     'pipewire'                      # OPTIONAL: Modern audio router and processor
     'pipewire-alsa'                 # OPTIONAL: Pipewire alsa configuration
     'pipewire-pulse'                # OPTIONAL: Pipewire replacement for pulseaudio
@@ -63,6 +62,7 @@ APPS=(
     'ttf-ubuntu-font-family'        # OPTIONAL: Ubuntu fonts
     'unrar'                         # OPTIONAL: Support for rar files
     'unzip'                         # OPTIONAL: Support for zip files
+    'wireplumber'                   # OPTIONAL: Session manager for Pipewire
     'xclip'                         # OPTIONAL: Copy to clipboard from CLI
     'zenity'                        # OPTIONAL: Basic GUIs from CLI
     'zip'                           # OPTIONAL: Support for zip files
@@ -220,6 +220,7 @@ QTILE=(
     'light'
     'lightdm'
     'lightdm-gtk-greeter'
+    'mate-polkit'
     'mint-backgrounds-una'
     'papirus-icon-theme'
     'picom-git'
