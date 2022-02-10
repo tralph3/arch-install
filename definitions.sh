@@ -491,7 +491,7 @@ detect_drivers(){
 
 install_dotfiles() {
     # this creates the default profiles for firefox
-    # it's needed to have a directory to drop some dotfiles
+    # it's needed to have a directory to drop some configs
     sudo su ${USR} -s /bin/zsh -lc "timeout 1s firefox --headless"
 
     git clone https://github.com/tralph3/.dotfiles ${USR_HOME}/.dotfiles
@@ -499,8 +499,8 @@ install_dotfiles() {
     chown -R ${USR}:${USR} ${USR_HOME}
     sudo -u ${USR} ${USR_HOME}/.dotfiles/install.sh
 
-    # init.vim installs plugins automatically if they're not there
-    sudo -u ${USR} nvim
+    # installs plugins
+    sudo -u ${USR} nvim -c ":PlugInstall" -c ":q" -c ":q"
 }
 
 
