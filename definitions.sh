@@ -93,6 +93,7 @@ YmSH4jMeFaM6nlKnIzyAxem4/IU95NE9iWotuseBxgMAqF41l90BAAA=" | gunzip
         fi
     done
 
+    # this: "<<-" ignores indentation, but only for tab characters
     cat <<- EOL > vars.sh
 		export DE=$DE
 		export USR=$USR
