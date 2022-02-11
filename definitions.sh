@@ -497,7 +497,7 @@ install_dotfiles() {
     git clone https://github.com/tralph3/.dotfiles ${USR_HOME}/.dotfiles
     chmod +x ${USR_HOME}/.dotfiles/install.sh
     chown -R ${USR}:${USR} ${USR_HOME}
-    sudo -u ${USR} ${USR_HOME}/.dotfiles/install.sh
+    sudo -u ${USR} ${USR_HOME}/.dotfiles/install.sh --noconfirm
 
     # installs plugins
     sudo -u ${USR} nvim -c ":PlugInstall" -c ":q" -c ":q"
