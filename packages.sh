@@ -74,6 +74,7 @@ APPS=(
 GAMING_APPS=(
     'discord'                       # OPTIONAL: Communication software
     'gamemode'                      # OPTIONAL: System optimizations for gaming
+    'gamescope'                     # OPTIONAL: WM container for games
     'lib32-gamemode'                # OPTIONAL: Same, but 32bit
     'lutris'                        # OPTIONAL: Game launcher and configuration tool
     'mangohud'                      # OPTIONAL: HUD for monitoring system and logging
