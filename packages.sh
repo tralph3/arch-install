@@ -62,6 +62,7 @@ APPS=(
     'ttf-ubuntu-font-family'        # OPTIONAL: Ubuntu fonts
     'unrar'                         # OPTIONAL: Support for rar files
     'unzip'                         # OPTIONAL: Support for zip files
+    'vscode-codicons-git'           # OPTIONAL: Icon font for neovim
     'wireplumber'                   # OPTIONAL: Session manager for Pipewire
     'xclip'                         # OPTIONAL: Copy to clipboard from CLI
     'zenity'                        # OPTIONAL: Basic GUIs from CLI
@@ -222,7 +223,6 @@ QTILE=(
     'lightdm'
     'lightdm-gtk-greeter'
     'mate-polkit'
-    'mint-backgrounds-una'
     'papirus-icon-theme'
     'picom-git'
     'qtile'
@@ -231,6 +231,7 @@ QTILE=(
     'xdg-desktop-portal'
     'xdg-desktop-portal-gtk'
     'xorg-server'
+    'xorg-xrandr'
 )
 
 XFCE=(
