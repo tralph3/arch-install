@@ -219,6 +219,7 @@ QTILE=(
     'dunst'
     'engrampa'
     'feh'
+    'gnome-keyring'
     'light'
     'lightdm'
     'lightdm-gtk-greeter'
