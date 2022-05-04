@@ -18,6 +18,7 @@ BASE_APPS=(
     'linux-headers'                 # OPTIONAL: Scripts for building kernel modules
     'man-db'                        # OPTIONAL: Manual database
     'mtools'                        # OPTIONAL: Utilities for DOS disks
+    'mtpfs'                         # OPTIONAL: Media Transfer Protocol support
     'network-manager-applet'        # OPTIONAL: Applet for managing the network
     'networkmanager'                # OPTIONAL: Network connection manager
     'openssh'                       # OPTIONAL: Remotely control other systems
