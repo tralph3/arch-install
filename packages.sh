@@ -33,7 +33,7 @@ BASE_APPS=(
 # user applications
 APPS=(
     'alacritty'                     # OPTIONAL: Hardware accelerated terminal emulator
-    'alsa-utils'                    # OPTIOANL: Utilities for managing alsa cards
+    'alsa-utils'                    # OPTIONAL: Utilities for managing alsa cards
     'android-tools'                 # OPTIONAL: Utilities for managing android devices
     'audacity'                      # OPTIONAL: Audio editor
     'cronie'                        # OPTIONAL: Task scheduler
@@ -65,6 +65,8 @@ APPS=(
     'vscode-codicons-git'           # OPTIONAL: Icon font for neovim
     'wireplumber'                   # OPTIONAL: Session manager for Pipewire
     'xclip'                         # OPTIONAL: Copy to clipboard from CLI
+    'zathura'                       # OPTIONAL: Document viewer
+    'zathura-pdf-mupdf'             # OPTIONAL: PDF ePub and OpenXPS support for zathura
     'zenity'                        # OPTIONAL: Basic GUIs from CLI
     'zip'                           # OPTIONAL: Support for zip files
     'zsh-autosuggestions'           # OPTIONAL: Suggest commands as you type for zsh
