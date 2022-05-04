@@ -94,9 +94,10 @@ GAMING_APPS=(
 
 # all of these will get enabled
 SERVICES=(
+    'NetworkManager'
     'cronie'
     'cups'
-    'NetworkManager'
+    'mpd'
     'sshd'
 )
 
@@ -226,6 +227,7 @@ QTILE=(
     'lightdm'
     'lightdm-gtk-greeter'
     'mate-polkit'
+    'mpd'
     'papirus-icon-theme'
     'picom-git'
     'qtile'
