@@ -79,11 +79,10 @@ GAMING_APPS=(
     'gamescope'                     # OPTIONAL: WM container for games
     'lib32-gamemode'                # OPTIONAL: Same, but 32bit
     'lutris'                        # OPTIONAL: Game launcher and configuration tool
-    'mangohud'                      # OPTIONAL: HUD for monitoring system and logging
+    'mangohud-x11'                  # OPTIONAL: HUD for monitoring system and logging
+    'lib32-mangohud-x11'            # OPTIONAL: HUD for monitoring system and logging
     'proton-ge-custom-bin'          # OPTIONAL: Extra fixes and patches for Proton
     'steam'                         # OPTIONAL: Game storefront
-    'steam-fonts'                   # OPTIONAL: Fonts for that weird game storefront
-    'steam-metadata-editor-git'     # OPTIONAL: Edit metadata for your Steam games
     'steam-native-runtime'          # OPTIONAL: A native runtime for the weird storefront
     'wine'                          # OPTIONAL: Run Windows applications on Linux
     'wine-gecko'                    # OPTIONAL: Wine's replacement for Internet Explorer
@@ -217,7 +216,7 @@ MATE=(
 
 QTILE=(
     'catppuccin-gtk-theme'
-    'catpuccin-grub-theme-git'
+    'catppuccin-grub-theme-git'
     'dex'
     'dunst'
     'engrampa'
