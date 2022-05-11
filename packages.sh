@@ -8,7 +8,7 @@ BASE=(
 # basic system components
 BASE_APPS=(
     'archlinux-keyring'             # NEEDED: Arch Linux PGP key ring
-    'base-devel'                    # OPTIONAL: Various development utilities, needed for Paru and all AUR packages
+    'base-devel'                    # NEEDED: Various development utilities, needed for Paru and all AUR packages
     'dialog'                        # NEEDED: Dependency for many TUI programs
     'dosfstools'                    # OPTIONAL: Utilities for DOS filesystems
     'efibootmgr'                    # OPTIONAL: Modify UEFI systems from CLI
@@ -216,7 +216,8 @@ MATE=(
 )
 
 QTILE=(
-    'breeze-gtk'
+    'catppuccin-gtk-theme'
+    'catpuccin-grub-theme-git'
     'dex'
     'dunst'
     'engrampa'

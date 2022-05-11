@@ -322,7 +322,8 @@ prepare_system() {
         grub-install --target=i386-pc $ROOT_DEVICE
     fi
 
-    configure_grub
+    # configure grub
+    echo -e '\nGRUB_DISABLE_OS_PROBER=false\n' >> /etc/default/grub
     grub-mkconfig -o /boot/grub/grub.cfg
 }
 
@@ -334,31 +335,6 @@ install_cpu_ucode() {
     elif [ "$CPU" == GenuineIntel ]; then
         pacman --needed --noconfirm -S intel-ucode
     fi
-}
-
-configure_grub() {
-
-    # get theme
-    git clone \
-      --depth 1  \
-      --filter=blob:none  \
-      --sparse \
-      https://github.com/xenlism/Grub-themes \
-    ;
-    cd Grub-themes
-    git sparse-checkout init --cone
-    git sparse-checkout set xenlism-grub-arch-1080p
-    cd -
-
-    # install theme
-    mkdir -pv /boot/grub/themes
-    mv /Grub-themes/xenlism-grub-arch-1080p/Xenlism-Arch /boot/grub/themes
-
-    # enable OS_PROBER and set the theme
-    echo -e '\nGRUB_DISABLE_OS_PROBER=false\nGRUB_THEME="/boot/grub/themes/Xenlism-Arch/theme.txt"' >> /etc/default/grub
-
-    # clean up
-    rm -rf /Grub-themes
 }
 
 
