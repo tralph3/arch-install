@@ -51,7 +51,6 @@ APPS=(
     'mtpfs'                         # OPTIONAL: File transfer for android devices
     'neofetch'                      # OPTIONAL: Display system information, with style
     'neovim'                        # OPTIONAL: Objectively better than Emacs
-    'neovim-plug-git'               # OPTIONAL: Plugin manager for neovim
     'nerd-fonts-ubuntu-mono'        # OPTIONAL: Ubuntu fonts patched with icons
     'numlockx'                      # OPTIONAL: Set numlock from CLI
     'p7zip'                         # OPTIONAL: Support for 7zip files
@@ -63,7 +62,6 @@ APPS=(
     'ttf-ubuntu-font-family'        # OPTIONAL: Ubuntu fonts
     'unrar'                         # OPTIONAL: Support for rar files
     'unzip'                         # OPTIONAL: Support for zip files
-    'vscode-codicons-git'           # OPTIONAL: Icon font for neovim
     'wireplumber'                   # OPTIONAL: Session manager for Pipewire
     'xclip'                         # OPTIONAL: Copy to clipboard from CLI
     'zathura'                       # OPTIONAL: Document viewer
