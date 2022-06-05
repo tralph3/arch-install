@@ -79,8 +79,7 @@ GAMING_APPS=(
     'gamescope'                     # OPTIONAL: WM container for games
     'lib32-gamemode'                # OPTIONAL: Same, but 32bit
     'lutris'                        # OPTIONAL: Game launcher and configuration tool
-    'mangohud-x11'                  # OPTIONAL: HUD for monitoring system and logging
-    'lib32-mangohud-x11'            # OPTIONAL: HUD for monitoring system and logging
+    'mangohud'                  # OPTIONAL: HUD for monitoring system and logging
     'proton-ge-custom-bin'          # OPTIONAL: Extra fixes and patches for Proton
     'steam'                         # OPTIONAL: Game storefront
     'steam-native-runtime'          # OPTIONAL: A native runtime for the weird storefront
