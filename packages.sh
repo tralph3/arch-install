@@ -215,7 +215,6 @@ MATE=(
 
 QTILE=(
     'catppuccin-gtk-theme'
-    'catppuccin-grub-theme-git'
     'dex'
     'dunst'
     'engrampa'
