@@ -33,12 +33,9 @@ BASE_APPS=(
 
 # user applications
 APPS=(
-    'alacritty'                     # OPTIONAL: Hardware accelerated terminal emulator
     'alsa-utils'                    # OPTIONAL: Utilities for managing alsa cards
     'android-tools'                 # OPTIONAL: Utilities for managing android devices
     'audacity'                      # OPTIONAL: Audio editor
-    'cronie'                        # OPTIONAL: Task scheduler
-    'cups'                          # OPTIONAL: Printer manager
     'exa'                           # OPTIONAL: Replacement for the ls command
     'ffmpeg'                        # OPTIONAL: Audio and video magic
     'firefox'                       # OPTIONAL: Web browser
@@ -75,14 +72,11 @@ APPS=(
 
 GAMING_APPS=(
     'discord'                       # OPTIONAL: Communication software
-    'gamemode'                      # OPTIONAL: System optimizations for gaming
     'gamescope'                     # OPTIONAL: WM container for games
-    'lib32-gamemode'                # OPTIONAL: Same, but 32bit
     'lutris'                        # OPTIONAL: Game launcher and configuration tool
-    'mangohud'                  # OPTIONAL: HUD for monitoring system and logging
-    'proton-ge-custom-bin'          # OPTIONAL: Extra fixes and patches for Proton
+    'mangohud'                      # OPTIONAL: HUD for monitoring system and logging
     'steam'                         # OPTIONAL: Game storefront
-    'steam-native-runtime'          # OPTIONAL: A native runtime for the weird storefront
+    'steam-native-runtime'          # OPTIONAL: A native runtime for Steam
     'wine'                          # OPTIONAL: Run Windows applications on Linux
     'wine-gecko'                    # OPTIONAL: Wine's replacement for Internet Explorer
     'wine-mono'                     # OPTIONAL: Wine's replacement for .Net Framework
@@ -92,8 +86,6 @@ GAMING_APPS=(
 # all of these will get enabled
 SERVICES=(
     'NetworkManager'
-    'cronie'
-    'cups'
     'mpd'
     'sshd'
 )
@@ -180,7 +172,6 @@ KDE=(
     'kdenetwork-filesharing'
     'kdesdk-thumbnailers'
     'kdialog'
-    'kipi-plugins'
     'kmix'
     'kolourpaint'
     'kontrast'
@@ -214,6 +205,7 @@ MATE=(
 )
 
 QTILE=(
+    'alacritty'
     'catppuccin-gtk-theme'
     'dex'
     'dunst'
