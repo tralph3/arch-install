@@ -323,8 +323,10 @@ prepare_system() {
         BASE_APPS+=('wpa_supplicant' 'wireless_tools')
     fi
 
-    pacman --needed --noconfirm -Syu
-    for package in $BASE_APPS[*] do
+    # download database
+    pacman --needed --noconfirm -Sy
+    for package in ${BASE_APPS[*]}
+    do
         pacman --noconfirm --needed -S $package
     done
     # update pacman keys
@@ -435,24 +437,28 @@ install_applications() {
     install_paru
 
     # install the chosen DE and GPU drivers
-    for package in $DE[*] do
+    for package in ${DE[*]}
+    do
         sudo su ${USR} -s /bin/zsh -lc "paru --needed --noconfirm -S $package"
     done
 
     detect_drivers
     if [ $GPU_DRIVERS ]; then
-        for package in $GPU_DRIVERS[*] do
+        for package in ${GPU_DRIVERS[*]}
+        do
             paru --noconfirm --needed -S $package
         done
     fi
 
     # install user applications
-    for package in $APPS[*] do
+    for package in ${APPS[*]}
+    do
         sudo su ${USR} -s /bin/zsh -lc "paru --needed --noconfirm -S $package"
     done
 
     if [ "${GAMING}" == "Yes" ]; then
-        for package in $GAMING_APPS[*] do
+        for package in ${GAMING_APPS[*]}
+        do
             sudo su ${USR} -s /bin/zsh -lc "paru --needed --noconfirm -S $package"
         done
     fi
@@ -515,7 +521,7 @@ install_dotfiles() {
 # SERVICES #
 ############
 enable_services() {
-    for service in ${SERVICES[@]}
+    for service in ${SERVICES[*]}
     do
         systemctl enable $service
     done
