@@ -79,6 +79,14 @@ YmSH4jMeFaM6nlKnIzyAxem4/IU95NE9iWotuseBxgMAqF41l90BAAA=" | gunzip
         fi
     done
 
+    PS3="Do you want to install dotfiles?: "
+    select DOTFILES in "Yes" "No"
+    do
+        if [ $DOTFILES ]; then
+            break
+        fi
+    done
+
     # detect wifi card
     if [ "$(lspci -d ::280)" ]; then
         WIFI=y
@@ -101,6 +109,7 @@ YmSH4jMeFaM6nlKnIzyAxem4/IU95NE9iWotuseBxgMAqF41l90BAAA=" | gunzip
 		export HOSTNAME=$HOSTNAME
 		export WIFI=$WIFI
 		export GAMING=$GAMING
+		export DOTFILES=$DOTFILES
 	EOL
 
     print_summary
@@ -134,6 +143,12 @@ print_summary() {
         echo "You \x1b[1;33mWILL\x1b[0m install gaming packages"
     else
         echo "You \x1b[1;33mWILL NOT\x1b[0m install gaming packages"
+    fi
+
+    if [ "${DOTFILES}" = "Yes" ]; then
+        echo "You \x1b[1;33mWILL\x1b[0m install dotfiles"
+    else
+        echo "You \x1b[1;33mWILL NOT\x1b[0m install dotfiles"
     fi
 
     read "ANS?Proceed with installation? [y/N]: "
@@ -308,7 +323,10 @@ prepare_system() {
         BASE_APPS+=('wpa_supplicant' 'wireless_tools')
     fi
 
-    pacman --noconfirm --needed -Syu ${BASE_APPS[@]}
+    pacman --needed --noconfirm -Syu
+    for package in $BASE_APPS[*] do
+        pacman --noconfirm --needed -S $package
+    done
     # update pacman keys
     pacman-key --init
     pacman-key --populate
@@ -417,19 +435,31 @@ install_applications() {
     install_paru
 
     # install the chosen DE and GPU drivers
-    sudo su ${USR} -s /bin/zsh -lc "paru --needed --noconfirm -S ${DE[*]}"
+    for package in $DE[*] do
+        sudo su ${USR} -s /bin/zsh -lc "paru --needed --noconfirm -S $package"
+    done
+
     detect_drivers
     if [ $GPU_DRIVERS ]; then
-        pacman --needed --noconfirm -S ${GPU_DRIVERS[@]}
+        for package in $GPU_DRIVERS[*] do
+            paru --noconfirm --needed -S $package
+        done
     fi
 
     # install user applications
-    sudo su ${USR} -s /bin/zsh -lc "paru --needed --noconfirm -S ${APPS[*]}"
+    for package in $APPS[*] do
+        sudo su ${USR} -s /bin/zsh -lc "paru --needed --noconfirm -S $package"
+    done
+
     if [ "${GAMING}" == "Yes" ]; then
-        sudo su ${USR} -s /bin/zsh -lc "paru --needed --noconfirm -S ${GAMING_APPS[*]}"
+        for package in $GAMING_APPS[*] do
+            sudo su ${USR} -s /bin/zsh -lc "paru --needed --noconfirm -S $package"
+        done
     fi
 
-    install_dotfiles
+    if [ "${DOTFILES}" == "Yes" ]; then
+        install_dotfiles
+    fi
 
     # remove unprotected root privileges
     echo '%wheel ALL=(ALL:ALL) ALL' > /etc/sudoers.d/wheel_sudo
