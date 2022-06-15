@@ -276,7 +276,7 @@ partition_and_mount_bios() {
 
 
 install_base() {
-    pacstrap /mnt ${BASE[@]}
+    pacstrap /mnt ${BASE[*]}
     reflector > /mnt/etc/pacman.d/mirrorlist
     genfstab -U /mnt >> /mnt/etc/fstab
 }
@@ -325,10 +325,7 @@ prepare_system() {
 
     # download database
     pacman --needed --noconfirm -Sy
-    for package in ${BASE_APPS[*]}
-    do
-        pacman --noconfirm --needed -S $package
-    done
+    pacman --noconfirm --ask=127 --needed -S ${BASE_APPS[*]}
     # update pacman keys
     pacman-key --init
     pacman-key --populate
@@ -430,6 +427,8 @@ prepare_gui() {
 # CUSTOMIZATION #
 #################
 install_applications() {
+    ins='paru --needed --useask --ask=127 --noconfirm -S'
+
     # let regular user run comands without password
     echo '%wheel ALL=(ALL:ALL) NOPASSWD: ALL' > /etc/sudoers.d/wheel_sudo
 
@@ -437,30 +436,18 @@ install_applications() {
     install_paru
 
     # install the chosen DE and GPU drivers
-    for package in ${DE[*]}
-    do
-        sudo su ${USR} -s /bin/zsh -lc "paru --needed --noconfirm -S $package"
-    done
+    sudo su ${USR} -s /bin/zsh -lc "$ins ${DE[*]}"
 
     detect_drivers
     if [ $GPU_DRIVERS ]; then
-        for package in ${GPU_DRIVERS[*]}
-        do
-            paru --noconfirm --needed -S $package
-        done
+        sudo su ${USR} -s /bin/zsh -lc "$ins ${GPU_DRIVERS[*]}"
     fi
 
     # install user applications
-    for package in ${APPS[*]}
-    do
-        sudo su ${USR} -s /bin/zsh -lc "paru --needed --noconfirm -S $package"
-    done
+    sudo su ${USR} -s /bin/zsh -lc "$ins ${APPS[*]}"
 
     if [ "${GAMING}" == "Yes" ]; then
-        for package in ${GAMING_APPS[*]}
-        do
-            sudo su ${USR} -s /bin/zsh -lc "paru --needed --noconfirm -S $package"
-        done
+        sudo su ${USR} -s /bin/zsh -lc "$ins ${GAMING_APPS[*]}"
     fi
 
     if [ "${DOTFILES}" == "Yes" ]; then
