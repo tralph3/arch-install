@@ -49,13 +49,16 @@ APPS=(
     'neofetch'                      # OPTIONAL: Display system information, with style
     'neovim'                        # OPTIONAL: Objectively better than Emacs
     'nerd-fonts-ubuntu-mono'        # OPTIONAL: Ubuntu fonts patched with icons
+    'ntfs-3g'                       # OPTIONAL: Driver for NTFS file systems
     'numlockx'                      # OPTIONAL: Set numlock from CLI
     'p7zip'                         # OPTIONAL: Support for 7zip files
     'pavucontrol'                   # OPTIONAL: Pulse Audio volume control
     'pipewire'                      # OPTIONAL: Modern audio router and processor
     'pipewire-alsa'                 # OPTIONAL: Pipewire alsa configuration
     'pipewire-pulse'                # OPTIONAL: Pipewire replacement for pulseaudio
+    'python-pynvim'                 # OPTIONAL: Python client for neovim
     'qbittorrent'                   # OPTIONAL: Torrent downloader
+    'ripgrep'                       # OPTIONAL: GNU grep replacement
     'ttf-ubuntu-font-family'        # OPTIONAL: Ubuntu fonts
     'unrar'                         # OPTIONAL: Support for rar files
     'unzip'                         # OPTIONAL: Support for zip files
@@ -174,6 +177,7 @@ KDE=(
     'kdialog'
     'kmix'
     'kolourpaint'
+    'konsole'
     'kontrast'
     'kwrite'
     'okular'
