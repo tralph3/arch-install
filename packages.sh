@@ -181,6 +181,7 @@ KDE=(
     'kontrast'
     'kwrite'
     'okular'
+    'packagekit-qt5'
     'plasma'
     'print-manager'
     'sddm'
