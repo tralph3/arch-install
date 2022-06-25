@@ -16,8 +16,9 @@ As this installation script was written to be quick and efficient, only these ve
 * Hostname
 * Desktop Environment
 * If you wish to install gaming applications
+* If you wish to install my personal dotfiles
 
-Things like timezone, partitioning scheme, filesystem, and anything else not contemplated in these settings is set up in the way I prefer, and if you are to use this script, it's heavily encouraged that you fork the repo and modify the script to fit your preferences. It will also use my personal dotfiles by default, which you probably also want to change.
+Things like timezone, partitioning scheme, filesystem, and anything else not contemplated in these settings is set up in the way I prefer, and if you are to use this script, it's heavily encouraged that you fork the repo and modify the script to fit your preferences.
 
 ## Usage
 
