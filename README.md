@@ -94,8 +94,7 @@ Here's a list of all the default settings, next to each section, you'll see the 
     * A single partition that takes the entirety fo the drive
 * Windows and Storage partitions get mounted on `/mnt/Windows` or `/mnt/Storage`
 * Root disk will get erased completely, no questions asked
-* Windows and Storage disks only get mounted and added fstab
-* Kernel 5.15's ntfs driver is used for Windows
+* Windows and Storage disks only get mounted and added to fstab
 
 ### FSTAB (`install_base`)
 
@@ -111,7 +110,6 @@ Here's a list of all the default settings, next to each section, you'll see the 
 
 * `wpa_supplicant` and `wireless_tools` get installed if a wifi card is detected
 * Grub is used as the bootloader
-* A grub theme gets installed, os-prober gets enabled
 * `amd-ucode` or `intel-ucode` get installed according to the host's CPU
 
 ### Users (`setup_users`)
@@ -132,8 +130,9 @@ Here's a list of all the default settings, next to each section, you'll see the 
 * `paru` gets installed as the AUR helper with the `paru-bin` package to avoid compile times
 * GPU drivers get detected automatically
     * Old NVIDIA cards will need to change this since the drivers are always latest
-* User defined applications get installed here, along with gaming ones if appropiate
-* My personal dotfiles get installed
+* User applications get installed
+* Gaming applications get installed (if marked as such)
+* Dotfiles get installed (if marked as such)
 
 ### Services (`enable_services`)
 
