@@ -278,7 +278,12 @@ partition_and_mount_bios() {
 install_base() {
     pacstrap /mnt ${BASE[*]}
     reflector > /mnt/etc/pacman.d/mirrorlist
-    genfstab -U /mnt >> /mnt/etc/fstab
+    genfstab -U /mnt | awk '{
+        if($2 == "/mnt/Windows" || $2 == "/mnt/Storage") {
+            $4 = $4",nofail"
+        }
+        print
+    }' >> /mnt/etc/fstab
 }
 
 
