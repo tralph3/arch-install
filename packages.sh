@@ -9,6 +9,7 @@ BASE=(
 BASE_APPS=(
     'archlinux-keyring'             # NEEDED: Arch Linux PGP key ring
     'base-devel'                    # NEEDED: Various development utilities, needed for Paru and all AUR packages
+    'cronie'                        # OPTIONAL: Run jobs periodically
     'dialog'                        # NEEDED: Dependency for many TUI programs
     'dosfstools'                    # OPTIONAL: Utilities for DOS filesystems
     'efibootmgr'                    # OPTIONAL: Modify UEFI systems from CLI
@@ -89,6 +90,7 @@ GAMING_APPS=(
 # all of these will get enabled
 SERVICES=(
     'NetworkManager'
+    'cronie'
     'mpd'
     'sshd'
 )
