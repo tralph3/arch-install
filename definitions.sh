@@ -384,6 +384,10 @@ prepare_gui() {
     # and set up the DE variable
     case $DE in
 
+        AWESOME)
+            DE=${AWESOME[@]}
+            SERVICES+=('lightdm')
+            ;;
         BUDGIE)
             DE=${BUDGIE[@]}
             SERVICES+=('lightdm')

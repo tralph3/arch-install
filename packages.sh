@@ -103,6 +103,7 @@ GPU_DRIVERS=()
 # DESKTOP ENVIRONMENTS #
 ########################
 ENVIRONMENTS=(
+    'AWESOME'
     'BUDGIE'
     'CINNAMON'
     'DEEPIN'
@@ -113,6 +114,30 @@ ENVIRONMENTS=(
     'MATE'
     'QTILE'
     'XFCE'
+)
+
+AWESOME=(
+    'alacritty'
+    'awesome-git'
+    'catppuccin-gtk-theme'
+    'dex'
+    'dunst'
+    'engrampa'
+    'feh'
+    'gnome-keyring'
+    'light'
+    'lightdm'
+    'lightdm-gtk-greeter'
+    'mate-polkit'
+    'mpd'
+    'papirus-icon-theme'
+    'picom-git'
+    'rofi'
+    'thunar'
+    'xdg-desktop-portal'
+    'xdg-desktop-portal-gtk'
+    'xorg-server'
+    'xorg-xrandr'
 )
 
 BUDGIE=(
