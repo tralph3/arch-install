@@ -37,7 +37,7 @@ APPS=(
     'alsa-utils'                    # OPTIONAL: Utilities for managing alsa cards
     'android-tools'                 # OPTIONAL: Utilities for managing android devices
     'audacity'                      # OPTIONAL: Audio editor
-    'emacs'                         # OPTIONAL: Objectively better than vim
+    'emacs-nativecomp'              # OPTIONAL: Objectively better than vim
     'exa'                           # OPTIONAL: Replacement for the ls command
     'ffmpeg'                        # OPTIONAL: Audio and video magic
     'firefox'                       # OPTIONAL: Web browser
