@@ -15,6 +15,7 @@ source packages.sh
 
 setup_variables
 configure_pacman
+update_keyring
 partition_and_mount
 install_base
 

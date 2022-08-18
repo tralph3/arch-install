@@ -165,6 +165,11 @@ configure_pacman() {
     sed -i "s/^#ParallelDownloads = 5/ParallelDownloads = 10\nILoveCandy/" /etc/pacman.conf
 }
 
+update_keyring() {
+    # this is useful if installing from outdated ISO
+    pacman --noconfirm --ask=127 -S archlinux-keyring
+}
+
 
 ################
 # PARTITIONING #
