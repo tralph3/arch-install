@@ -166,8 +166,10 @@ configure_pacman() {
 }
 
 update_keyring() {
+    timedatectl set-ntp true # sync clock
+    hwclock --systohc
     # this is useful if installing from outdated ISO
-    pacman --noconfirm --ask=127 -S archlinux-keyring
+    pacman --noconfirm --ask=127 -Sy archlinux-keyring
 }
 
 
@@ -188,8 +190,6 @@ partition_and_mount() {
 }
 
 partition_and_mount_uefi() {
-    timedatectl set-ntp true # sync clock
-
     # disk partitioning
     wipefs --all --force $ROOT_DEVICE
     # cut removes comments from heredoc
@@ -238,8 +238,6 @@ partition_and_mount_uefi() {
 }
 
 partition_and_mount_bios() {
-    timedatectl set-ntp true # sync clock
-
     # disk partitioning
     wipefs --all --force $ROOT_DEVICE
     # cut removes comments from heredoc
@@ -296,9 +294,8 @@ install_base() {
 # NETWORK #
 ###########
 setup_network() {
-    # time
+    # timezone
     ln -sfv /usr/share/zoneinfo/America/Argentina/Buenos_Aires /etc/localtime
-    hwclock --systohc
 
     configure_locale
 
