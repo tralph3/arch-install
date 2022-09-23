@@ -252,7 +252,7 @@ QTILE=(
     'mate-polkit'
     'mpd'
     'papirus-icon-theme'
-    'picom-pijulius-git'
+    'picom'
     'qtile'
     'rofi'
     'thunar'
