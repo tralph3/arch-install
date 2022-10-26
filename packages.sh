@@ -50,7 +50,7 @@ APPS=(
     'mtpfs'                         # OPTIONAL: File transfer for android devices
     'neofetch'                      # OPTIONAL: Display system information, with style
     'neovim'                        # OPTIONAL: Objectively better than Emacs
-    'nerd-fonts-ubuntu-mono'        # OPTIONAL: Ubuntu fonts patched with icons
+    'ttf-ubuntumono-nerd'           # OPTIONAL: Ubuntu fonts patched with icons
     'ntfs-3g'                       # OPTIONAL: Driver for NTFS file systems
     'numlockx'                      # OPTIONAL: Set numlock from CLI
     'p7zip'                         # OPTIONAL: Support for 7zip files
@@ -208,7 +208,6 @@ KDE=(
     'kolourpaint'
     'konsole'
     'kontrast'
-    'kwrite'
     'okular'
     'packagekit-qt5'
     'plasma'
