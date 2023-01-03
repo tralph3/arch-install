@@ -16,6 +16,7 @@ BASE_APPS=(
     'git'                           # OPTIONAL: Version Control System, needed for the Grub theme, Dotfiles, and Paru
     'gnu-free-fonts'                # OPTIONAL: Additional system fonts
     'grub'                          # NEEDED: Bootloader
+    'libratbag'                     # OPTIONAL: Utility to control some gaming mice
     'linux-headers'                 # OPTIONAL: Scripts for building kernel modules
     'man-db'                        # OPTIONAL: Manual database
     'mtools'                        # OPTIONAL: Utilities for DOS disks
