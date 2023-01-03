@@ -50,7 +50,6 @@ APPS=(
     'mtpfs'                         # OPTIONAL: File transfer for android devices
     'neofetch'                      # OPTIONAL: Display system information, with style
     'neovim'                        # OPTIONAL: Objectively better than Emacs
-    'ttf-ubuntumono-nerd'           # OPTIONAL: Ubuntu fonts patched with icons
     'ntfs-3g'                       # OPTIONAL: Driver for NTFS file systems
     'numlockx'                      # OPTIONAL: Set numlock from CLI
     'p7zip'                         # OPTIONAL: Support for 7zip files
@@ -61,7 +60,9 @@ APPS=(
     'python-pynvim'                 # OPTIONAL: Python client for neovim
     'qbittorrent'                   # OPTIONAL: Torrent downloader
     'ripgrep'                       # OPTIONAL: GNU grep replacement
+    'speedcrunch'                   # OPTIONAL: Calculator
     'ttf-ubuntu-font-family'        # OPTIONAL: Ubuntu fonts
+    'ttf-ubuntumono-nerd'           # OPTIONAL: Ubuntu fonts patched with icons
     'unrar'                         # OPTIONAL: Support for rar files
     'unzip'                         # OPTIONAL: Support for zip files
     'wireplumber'                   # OPTIONAL: Session manager for Pipewire
