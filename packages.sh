@@ -16,7 +16,6 @@ BASE_APPS=(
     'git'                           # OPTIONAL: Version Control System, needed for the Grub theme, Dotfiles, and Paru
     'gnu-free-fonts'                # OPTIONAL: Additional system fonts
     'grub'                          # NEEDED: Bootloader
-    'libratbag'                     # OPTIONAL: Utility to control some gaming mice
     'linux-headers'                 # OPTIONAL: Scripts for building kernel modules
     'man-db'                        # OPTIONAL: Manual database
     'mtools'                        # OPTIONAL: Utilities for DOS disks
@@ -46,6 +45,7 @@ APPS=(
     'gimp'                          # OPTIONAL: Image editor
     'helvum'                        # OPTIONAL: GUI for Pipewire configuration
     'htop'                          # OPTIONAL: System and process manager
+    'libratbag'                     # OPTIONAL: Utility to control some gaming mice
     'mlocate'                       # OPTIONAL: Quickly find files and directories
     'mpv'                           # OPTIONAL: Suckless video player
     'mtpfs'                         # OPTIONAL: File transfer for android devices
@@ -60,6 +60,7 @@ APPS=(
     'pipewire-pulse'                # OPTIONAL: Pipewire replacement for pulseaudio
     'python-pynvim'                 # OPTIONAL: Python client for neovim
     'qbittorrent'                   # OPTIONAL: Torrent downloader
+    'rgb_keyboard-git'              # OPTIONAL: Utility to control some gaming keyboards
     'ripgrep'                       # OPTIONAL: GNU grep replacement
     'speedcrunch'                   # OPTIONAL: Calculator
     'ttf-ubuntu-font-family'        # OPTIONAL: Ubuntu fonts
