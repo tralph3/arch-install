@@ -45,6 +45,7 @@ APPS=(
     'gimp'                          # OPTIONAL: Image editor
     'helvum'                        # OPTIONAL: GUI for Pipewire configuration
     'htop'                          # OPTIONAL: System and process manager
+    'jq'                            # OPTIONAL: Parser for json output
     'libratbag'                     # OPTIONAL: Utility to control some gaming mice
     'mlocate'                       # OPTIONAL: Quickly find files and directories
     'mpv'                           # OPTIONAL: Suckless video player
