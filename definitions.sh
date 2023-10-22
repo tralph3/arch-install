@@ -510,8 +510,6 @@ install_dotfiles() {
     chown -R ${USR}:${USR} ${USR_HOME}
     sudo -u ${USR} ${USR_HOME}/.dotfiles/install.sh --noconfirm
 
-    # neovim config installs plugins if missing automatically
-    sudo -u ${USR} nvim --headless
 }
 
 
