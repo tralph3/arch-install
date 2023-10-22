@@ -425,6 +425,10 @@ prepare_gui() {
             DE=${GNOME[@]}
             SERVICES+=('gdm')
             ;;
+        HYPRLAND)
+            DE=${HYPRLAND[@]}
+            SERVICES+=('sddm')
+            ;;
         KDE)
             DE=${KDE[@]}
             SERVICES+=('sddm')

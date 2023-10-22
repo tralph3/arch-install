@@ -37,8 +37,8 @@ APPS=(
     'alsa-utils'                    # OPTIONAL: Utilities for managing alsa cards
     'android-tools'                 # OPTIONAL: Utilities for managing android devices
     'audacity'                      # OPTIONAL: Audio editor
-    'emacs'                         # OPTIONAL: Objectively better than vim
-    'exa'                           # OPTIONAL: Replacement for the ls command
+    'emacs-wayland'                 # OPTIONAL: Objectively better than vim
+    'eza'                           # OPTIONAL: Replacement for the ls command
     'ffmpeg'                        # OPTIONAL: Audio and video magic
     'firefox'                       # OPTIONAL: Web browser
     'flameshot'                     # OPTIONAL: Screenshot utility
@@ -60,7 +60,6 @@ APPS=(
     'pipewire-pulse'                # OPTIONAL: Pipewire replacement for pulseaudio
     'python-pynvim'                 # OPTIONAL: Python client for neovim
     'qbittorrent'                   # OPTIONAL: Torrent downloader
-    'rgb_keyboard-git'              # OPTIONAL: Utility to control some gaming keyboards
     'ripgrep'                       # OPTIONAL: GNU grep replacement
     'speedcrunch'                   # OPTIONAL: Calculator
     'ttf-ubuntu-font-family'        # OPTIONAL: Ubuntu fonts
@@ -69,17 +68,14 @@ APPS=(
     'unzip'                         # OPTIONAL: Support for zip files
     'wireplumber'                   # OPTIONAL: Session manager for Pipewire
     'xclip'                         # OPTIONAL: Copy to clipboard from CLI
-    'zathura'                       # OPTIONAL: Document viewer
-    'zathura-pdf-mupdf'             # OPTIONAL: PDF ePub and OpenXPS support for zathura
     'zenity'                        # OPTIONAL: Basic GUIs from CLI
     'zip'                           # OPTIONAL: Support for zip files
     'zsh-autosuggestions'           # OPTIONAL: Suggest commands as you type for zsh
     'zsh-syntax-highlighting'       # OPTIONAL: Syntax highlighting for zsh
-    'zsh-theme-powerlevel10k'       # OPTIONAL: Stylish prompt for zsh
 )
 
 GAMING_APPS=(
-    'discord'                       # OPTIONAL: Communication software
+    'discord-screenaudio'           # OPTIONAL: Communication software
     'gamescope'                     # OPTIONAL: WM container for games
     'lutris'                        # OPTIONAL: Game launcher and configuration tool
     'mangohud'                      # OPTIONAL: HUD for monitoring system and logging
@@ -113,6 +109,7 @@ ENVIRONMENTS=(
     'DEEPIN'
     'ENLIGHTENMENT'
     'GNOME'
+    'HYPRLAND'
     'KDE'
     'LXQT'
     'MATE'
@@ -189,6 +186,22 @@ GNOME=(
     'gnome-tweaks'
     'xdg-desktop-portal'
     'xdg-desktop-portal-gnome'
+)
+
+HYPRLAND=(
+    'adw-gtk3'
+    'alacritty'
+    'dex'
+    'dunst'
+    'gnome-keyring'
+    'hyprland'
+    'light'
+    'mate-polkit'
+    'papirus-icon-theme'
+    'rofi-lbonn-wayland-git'
+    'sddm'
+    'waybar'
+    'xdg-desktop-portal-hyprland'
 )
 
 KDE=(
