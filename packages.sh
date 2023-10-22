@@ -9,6 +9,7 @@ BASE=(
 BASE_APPS=(
     'archlinux-keyring'             # NEEDED: Arch Linux PGP key ring
     'base-devel'                    # NEEDED: Various development utilities, needed for Paru and all AUR packages
+    'cmake'                         # OPTIONAL: Cross platform make system
     'cronie'                        # OPTIONAL: Run jobs periodically
     'dialog'                        # NEEDED: Dependency for many TUI programs
     'dosfstools'                    # OPTIONAL: Utilities for DOS filesystems
