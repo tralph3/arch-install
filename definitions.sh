@@ -501,9 +501,9 @@ detect_drivers(){
 }
 
 install_dotfiles() {
-    # this creates the default profiles for firefox
-    # it's needed to have a directory to drop some configs
-    sudo su ${USR} -s /bin/zsh -lc "timeout 1s firefox --headless"
+    # creating the default firefox profile is needed to setup the
+    # dotfiles
+    sudo su ${USR} -s /bin/zsh -lc "firefox --createprofile ${USR}"
 
     git clone https://github.com/tralph3/.dotfiles ${USR_HOME}/.dotfiles
     chmod +x ${USR_HOME}/.dotfiles/install.sh
