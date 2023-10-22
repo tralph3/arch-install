@@ -216,7 +216,7 @@ partition_and_mount_uefi() {
 
     # partition formatting
     mkfs.fat -F 32 /dev/$PARTITIONS[1] -n boot  # boot
-    mkfs.ext4 /dev/$PARTITIONS[2] -L ROOT  # root
+    mkfs.ext4 /dev/$PARTITIONS[2] -L root  # root
 
     # mount partitions
     mkdir -pv /mnt
