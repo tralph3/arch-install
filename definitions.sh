@@ -501,21 +501,6 @@ detect_drivers(){
 }
 
 install_dotfiles() {
-    # add some scripts for cronie
-    mkdir -p /etc/cron.daily/
-    cat <<- EOL > /etc/cron.daily/updatedb.sh
-		# update mlocate database
-		updatedb
-	EOL
-
-    cat <<- EOL > /etc/cron.daily/clean_cache.sh
-		# clean old cache
-		find /home/**/.cache -mtime +7 -exec rm -f {} \;
-		find /root/.cache -mtime +7 -exec rm -f {} \;
-	EOL
-
-    chmod +x /etc/cron.daily/{updatedb.sh,clean_cache.sh}
-
     # this creates the default profiles for firefox
     # it's needed to have a directory to drop some configs
     sudo su ${USR} -s /bin/zsh -lc "timeout 1s firefox --headless"
@@ -539,4 +524,3 @@ enable_services() {
         systemctl enable $service
     done
 }
-
