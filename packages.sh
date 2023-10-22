@@ -65,7 +65,7 @@ APPS=(
     'ripgrep'                       # OPTIONAL: GNU grep replacement
     'speedcrunch'                   # OPTIONAL: Calculator
     'ttf-ubuntu-font-family'        # OPTIONAL: Ubuntu fonts
-    'ttf-ubuntumono-nerd'           # OPTIONAL: Ubuntu fonts patched with icons
+    'ttf-ubuntu-mono-nerd'          # OPTIONAL: Ubuntu fonts patched with icons
     'unrar'                         # OPTIONAL: Support for rar files
     'unzip'                         # OPTIONAL: Support for zip files
     'wireplumber'                   # OPTIONAL: Session manager for Pipewire
@@ -134,7 +134,7 @@ AWESOME=(
     'mate-polkit'
     'mpd'
     'papirus-icon-theme'
-    'picom-pijulius-git'
+    'picom'
     'rofi'
     'thunar'
     'wmctrl'
@@ -202,6 +202,7 @@ HYPRLAND=(
     'papirus-icon-theme'
     'rofi-lbonn-wayland-git'
     'sddm'
+    'swww'
     'waybar'
     'xdg-desktop-portal-hyprland'
 )
