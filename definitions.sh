@@ -518,7 +518,9 @@ detect_drivers(){
 install_dotfiles() {
     # creating the default firefox profile is needed to setup the
     # dotfiles
-    sudo su ${USR} -s /bin/zsh -lc "firefox --createprofile ${USR}"
+    if [ -f "$(which firefox)" ]; then
+        sudo su ${USR} -s /bin/zsh -lc "firefox --createprofile ${USR}"
+    fi
 
     git clone https://github.com/tralph3/.dotfiles ${USR_HOME}/.dotfiles
     chmod +x ${USR_HOME}/.dotfiles/install.sh
