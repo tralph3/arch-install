@@ -200,6 +200,8 @@ partition_and_mount_uefi() {
 		            # partition number 1
 		            # start of sector
 		+512MB      # plus 512MB
+		t           # set partition type
+		1           # partition type 1 (EFI System)
 		n           # new parition
 		            # partition number 2
 		            # start of sector
@@ -213,7 +215,7 @@ partition_and_mount_uefi() {
     done))
 
     # partition formatting
-    mkfs.fat -F 32 /dev/$PARTITIONS[1]     # boot
+    mkfs.fat -F 32 /dev/$PARTITIONS[1] -n boot  # boot
     mkfs.ext4 /dev/$PARTITIONS[2] -L ROOT  # root
 
     # mount partitions
@@ -257,7 +259,7 @@ partition_and_mount_bios() {
     done))
 
     # partition formatting
-    mkfs.ext4 /dev/$PARTITIONS[1] -L ROOT  # root/boot
+    mkfs.ext4 /dev/$PARTITIONS[1] -L root  # root/boot
 
     # mount partitions
     mkdir -pv /mnt
@@ -339,9 +341,22 @@ prepare_system() {
 
     install_cpu_ucode
 
-    # install grub
+    # install bootloader
     if [ "$UEFI" == y ]; then
-        grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=Arch
+        bootctl install
+        mkdir -p /boot/loader/entries
+        cat <<- EOL > /boot/loader/loader.conf
+			default Arch.conf
+			timeout 4
+			console-mode max
+			editor no
+		EOL
+        cat <<- EOL > /boot/loader/entries/Arch.conf
+			title Arch Linux
+			linux /vmlinuz-linux
+			initrd /initramfs-linux.img
+			options root="LABEL=root" rw
+		EOL
     elif [ "$UEFI" == n ]; then
         grub-install --target=i386-pc $ROOT_DEVICE
     fi
